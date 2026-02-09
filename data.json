@@ -1,0 +1,564 @@
+{
+    "rol_admin_torneo_id": 1459259380813004968,
+    "rol_streamer_id": 1459259380813004968,
+    "torneo": {
+        "torneo_uid": "C738C0",
+        "nombre": "1",
+        "equipos": [
+            {
+                "nombre": "11111",
+                "logo": null
+            },
+            {
+                "nombre": "22222",
+                "logo": null
+            }
+        ],
+        "partidos": [
+            {
+                "id": 1,
+                "a": "11111",
+                "b": "22222",
+                "fecha": "asd",
+                "estado": "asd",
+                "torneo_uid": "C738C0",
+                "canal_publico_id": 1470460564282278012,
+                "mensaje_publico_id": 1470460568354816000,
+                "streamers_postulados": [],
+                "streamers_aprobados": [
+                    1252937461966045269
+                ],
+                "canal_partido_id": 1470460669710172317,
+                "mensaje_partido_id": 1470460670439854317,
+                "equipos": {
+                    "A": {
+                        "capitanes": [
+                            1445251337032827063
+                        ]
+                    },
+                    "B": {
+                        "capitanes": [
+                            1252937461966045269
+                        ]
+                    }
+                },
+                "streamers": [
+                    "<@1252937461966045269> — sadad"
+                ]
+            },
+            {
+                "id": 2,
+                "a": "22222",
+                "b": "11111",
+                "fecha": "⏰ Sin definir",
+                "estado": "🕒 Pendiente",
+                "torneo_uid": "C738C0",
+                "canal_publico_id": 1470460564282278012,
+                "mensaje_publico_id": 1470460569281630305,
+                "streamers_postulados": [
+                    1252937461966045269
+                ],
+                "streamers_aprobados": []
+            }
+        ],
+        "formato_partidos": "IDA_VUELTA",
+        "tabla": {},
+        "creador": 1252937461966045269,
+        "logo": null,
+        "recursos": {
+            "canales": [
+                1470460534154465382,
+                1470460535215489119,
+                1470460564282278012,
+                1470460567410966528,
+                1470460669710172317
+            ],
+            "categorias": [
+                1470460532719878278,
+                1470460562608619572,
+                1470460565783838851,
+                1470460668204286084
+            ]
+        }
+    },
+    "torneos": {
+        "1458543290973421662": {
+            "nombre": "1",
+            "equipos": [
+                {
+                    "nombre": "3132132",
+                    "logo": null
+                },
+                {
+                    "nombre": "32132132",
+                    "logo": null
+                }
+            ],
+            "partidos": [
+                {
+                    "id": 1,
+                    "a": "32132132",
+                    "b": "3132132",
+                    "fecha": "⏰ Sin definir",
+                    "estado": "🕒 Pendiente",
+                    "canal_publico_id": 1469496125596766354,
+                    "mensaje_publico_id": 1469496128838963411,
+                    "canal_partido_id": 1469496143355580438,
+                    "mensaje_partido_id": 1469496144467066983
+                }
+            ],
+            "formato_partidos": "UNICO",
+            "tabla": {},
+            "creador": 1252937461966045269,
+            "logo": null,
+            "torneo_uid": "DEFAULT"
+        }
+    },
+    "servidores": {
+        "1458543290973421662": {
+            "torneos": {
+                "DEFAULT": {
+                    "nombre": "1",
+                    "equipos": [
+                        {
+                            "nombre": "3132132",
+                            "logo": null
+                        },
+                        {
+                            "nombre": "32132132",
+                            "logo": null
+                        }
+                    ],
+                    "partidos": [
+                        {
+                            "id": 1,
+                            "a": "32132132",
+                            "b": "3132132",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "canal_publico_id": 1469496125596766354,
+                            "mensaje_publico_id": 1469496128838963411,
+                            "canal_partido_id": 1469496143355580438,
+                            "mensaje_partido_id": 1469496144467066983
+                        }
+                    ],
+                    "formato_partidos": "UNICO",
+                    "tabla": {},
+                    "creador": 1252937461966045269,
+                    "logo": null,
+                    "torneo_uid": "DEFAULT"
+                },
+                "7DFC86": {
+                    "torneo_uid": "7DFC86",
+                    "nombre": "1",
+                    "equipos": [
+                        {
+                            "nombre": "a",
+                            "logo": null
+                        },
+                        {
+                            "nombre": "b",
+                            "logo": null
+                        }
+                    ],
+                    "partidos": [
+                        {
+                            "id": 1,
+                            "a": "b",
+                            "b": "a",
+                            "fecha": "as",
+                            "estado": "🔴 Finalizado",
+                            "torneo_uid": "7DFC86",
+                            "canal_publico_id": 1470329181165588542,
+                            "mensaje_publico_id": 1470329184143544373,
+                            "streamers_postulados": [],
+                            "streamers_aprobados": [
+                                1252937461966045269
+                            ],
+                            "canal_partido_id": 1470329506173812757,
+                            "mensaje_partido_id": 1470329506593116214,
+                            "equipos": {
+                                "A": {
+                                    "capitanes": [
+                                        1252937461966045269
+                                    ]
+                                },
+                                "B": {
+                                    "capitanes": [
+                                        1445251337032827063
+                                    ]
+                                }
+                            },
+                            "fase_baneo": {
+                                "activa": true,
+                                "coinflip": {
+                                    "ganador": "A",
+                                    "eleccion": "final"
+                                },
+                                "equipos": {
+                                    "A": {
+                                        "tipo": "final",
+                                        "baneos_restantes": 1
+                                    },
+                                    "B": {
+                                        "tipo": "extra",
+                                        "baneos_restantes": 2
+                                    }
+                                },
+                                "turno_actual": "B",
+                                "map_pool": [
+                                    "asdsa",
+                                    "asdsadsd",
+                                    "qqqw",
+                                    "weqeqe"
+                                ],
+                                "mapa_actual": "asdsa",
+                                "baneados": [
+                                    "asdsa Axis"
+                                ],
+                                "historial": [
+                                    "🚫 **b** baneó Axis en **asdsa**"
+                                ],
+                                "max_baneos": 3,
+                                "mapas": {
+                                    "asdsa": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "asdsadsd": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "qqqw": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "weqeqe": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    }
+                                },
+                                "historial_baneos": [],
+                                "baneos_realizados": 1
+                            },
+                            "streamers": [
+                                "<@1252937461966045269> — sa"
+                            ],
+                            "resultado": "5-0",
+                            "bloqueado": true
+                        },
+                        {
+                            "id": 2,
+                            "a": "a",
+                            "b": "b",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "torneo_uid": "7DFC86",
+                            "canal_publico_id": 1470329181165588542,
+                            "mensaje_publico_id": 1470329185116360757,
+                            "streamers_postulados": [
+                                1252937461966045269
+                            ],
+                            "streamers_aprobados": []
+                        }
+                    ],
+                    "formato_partidos": "IDA_VUELTA",
+                    "tabla": {},
+                    "creador": 1252937461966045269,
+                    "logo": null
+                },
+                "866F10": {
+                    "torneo_uid": "866F10",
+                    "nombre": null,
+                    "equipos": [],
+                    "partidos": [],
+                    "formato_partidos": null,
+                    "tabla": {},
+                    "creador": 1252937461966045269,
+                    "logo": null
+                },
+                "2AD2EF": {
+                    "torneo_uid": "2AD2EF",
+                    "nombre": null,
+                    "equipos": [],
+                    "partidos": [],
+                    "formato_partidos": null,
+                    "tabla": {}
+                },
+                "528527": {
+                    "torneo_uid": "528527",
+                    "nombre": "1",
+                    "equipos": [
+                        {
+                            "nombre": "12",
+                            "logo": null
+                        },
+                        {
+                            "nombre": "34",
+                            "logo": null
+                        }
+                    ],
+                    "partidos": [
+                        {
+                            "id": 1,
+                            "a": "12",
+                            "b": "34",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🔴 Finalizado",
+                            "torneo_uid": "528527",
+                            "canal_publico_id": 1470332618791981194,
+                            "mensaje_publico_id": 1470332622684033184,
+                            "resultado": "5-0",
+                            "bloqueado": true
+                        },
+                        {
+                            "id": 2,
+                            "a": "34",
+                            "b": "12",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "torneo_uid": "528527",
+                            "canal_publico_id": 1470332618791981194,
+                            "mensaje_publico_id": 1470332623497986191
+                        }
+                    ],
+                    "formato_partidos": "IDA_VUELTA",
+                    "tabla": {
+                        "12": {
+                            "pj": 1,
+                            "pg": 1,
+                            "pp": 0,
+                            "pts": 3
+                        },
+                        "34": {
+                            "pj": 1,
+                            "pg": 0,
+                            "pp": 1,
+                            "pts": 0
+                        }
+                    },
+                    "creador": 1252937461966045269,
+                    "logo": null
+                },
+                "B987A5": {
+                    "torneo_uid": "B987A5",
+                    "nombre": "1",
+                    "equipos": [
+                        {
+                            "nombre": "123",
+                            "logo": null
+                        },
+                        {
+                            "nombre": "456",
+                            "logo": null
+                        }
+                    ],
+                    "partidos": [
+                        {
+                            "id": 1,
+                            "a": "123",
+                            "b": "456",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "torneo_uid": "B987A5",
+                            "canal_publico_id": 1470339556355211409,
+                            "mensaje_publico_id": 1470339560134152354
+                        },
+                        {
+                            "id": 2,
+                            "a": "456",
+                            "b": "123",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "torneo_uid": "B987A5",
+                            "canal_publico_id": 1470339556355211409,
+                            "mensaje_publico_id": 1470339560763298023
+                        },
+                        {
+                            "id": 3,
+                            "a": "123",
+                            "b": "456",
+                            "fecha": "09/03/2026",
+                            "estado": "🕒 Pendiente",
+                            "resultado": null,
+                            "bloqueado": false,
+                            "equipos": {
+                                "A": {
+                                    "capitanes": [
+                                        1252937461966045269
+                                    ]
+                                },
+                                "B": {
+                                    "capitanes": [
+                                        1445251337032827063
+                                    ]
+                                }
+                            },
+                            "streamers": [],
+                            "streamers_postulados": [],
+                            "streamers_aprobados": [],
+                            "torneo_uid": "B987A5",
+                            "canal_publico_id": 1470339556355211409,
+                            "mensaje_publico_id": 1470339807447224321,
+                            "canal_partido_id": 1470339916591534196,
+                            "mensaje_partido_id": 1470339917337989235,
+                            "fase_baneo": {
+                                "activa": true,
+                                "coinflip": {
+                                    "ganador": "B",
+                                    "eleccion": null
+                                },
+                                "equipos": {
+                                    "B": {
+                                        "tipo": null,
+                                        "baneos_restantes": 0
+                                    },
+                                    "A": {
+                                        "tipo": null,
+                                        "baneos_restantes": 0
+                                    }
+                                },
+                                "turno_actual": "B",
+                                "map_pool": [
+                                    "asd",
+                                    "asdddd",
+                                    "qwew",
+                                    "rtrt"
+                                ],
+                                "mapa_actual": "asd",
+                                "baneados": [],
+                                "historial": [],
+                                "max_baneos": 3,
+                                "mapas": {
+                                    "asd": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "asdddd": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "qwew": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    },
+                                    "rtrt": {
+                                        "baneado": false,
+                                        "lado_baneado": null,
+                                        "lado_forzado": null
+                                    }
+                                },
+                                "historial_baneos": []
+                            }
+                        }
+                    ],
+                    "formato_partidos": "IDA_VUELTA",
+                    "tabla": {
+                        "123": {
+                            "pj": 0,
+                            "pg": 0,
+                            "pp": 0,
+                            "pts": 0
+                        },
+                        "456": {
+                            "pj": 0,
+                            "pg": 0,
+                            "pp": 0,
+                            "pts": 0
+                        }
+                    },
+                    "creador": 1252937461966045269,
+                    "logo": null
+                },
+                "C738C0": {
+                    "torneo_uid": "C738C0",
+                    "nombre": "1",
+                    "equipos": [
+                        {
+                            "nombre": "11111",
+                            "logo": null
+                        },
+                        {
+                            "nombre": "22222",
+                            "logo": null
+                        }
+                    ],
+                    "partidos": [
+                        {
+                            "id": 1,
+                            "a": "11111",
+                            "b": "22222",
+                            "fecha": "asd",
+                            "estado": "asd",
+                            "torneo_uid": "C738C0",
+                            "canal_publico_id": 1470460564282278012,
+                            "mensaje_publico_id": 1470460568354816000,
+                            "streamers_postulados": [],
+                            "streamers_aprobados": [
+                                1252937461966045269
+                            ],
+                            "canal_partido_id": 1470460669710172317,
+                            "mensaje_partido_id": 1470460670439854317,
+                            "equipos": {
+                                "A": {
+                                    "capitanes": [
+                                        1445251337032827063
+                                    ]
+                                },
+                                "B": {
+                                    "capitanes": [
+                                        1252937461966045269
+                                    ]
+                                }
+                            },
+                            "streamers": [
+                                "<@1252937461966045269> — sadad"
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "a": "22222",
+                            "b": "11111",
+                            "fecha": "⏰ Sin definir",
+                            "estado": "🕒 Pendiente",
+                            "torneo_uid": "C738C0",
+                            "canal_publico_id": 1470460564282278012,
+                            "mensaje_publico_id": 1470460569281630305,
+                            "streamers_postulados": [
+                                1252937461966045269
+                            ],
+                            "streamers_aprobados": []
+                        }
+                    ],
+                    "formato_partidos": "IDA_VUELTA",
+                    "tabla": {},
+                    "creador": 1252937461966045269,
+                    "logo": null,
+                    "recursos": {
+                        "canales": [
+                            1470460534154465382,
+                            1470460535215489119,
+                            1470460564282278012,
+                            1470460567410966528,
+                            1470460669710172317
+                        ],
+                        "categorias": [
+                            1470460532719878278,
+                            1470460562608619572,
+                            1470460565783838851,
+                            1470460668204286084
+                        ]
+                    }
+                }
+            },
+            "activo": "C738C0"
+        }
+    }
+}
