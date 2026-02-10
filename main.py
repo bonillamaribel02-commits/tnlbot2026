@@ -295,20 +295,20 @@ def generar_brackets_eliminatoria_multi(guild_id: int, torneo_uid: str | None = 
     torneo["eliminatorias"] = brackets
     save_data(data)
 # =============================
-# MODALES-REV
+# MODALES-REV-EN
 # =============================
 class NombreTorneoModal(discord.ui.Modal):
     def __init__(self, torneo_uid: str):
-        super().__init__(title="Definir nombre del torneo")
+        super().__init__(title="Set tournament name")  # FIX (EN)
         self.torneo_uid = torneo_uid
 
         self.nombre = discord.ui.TextInput(
-            label="Nombre del torneo",
-            placeholder="Ej: TNL 18vs18"
+            label="Tournament name",  # FIX (EN)
+            placeholder="e.g.: TNL 18vs18"  # FIX (EN)
         )
 
         self.logo = discord.ui.TextInput(
-            label="Logo del torneo (Imgur directo opcional)",
+            label="Tournament logo (direct Imgur link, optional)",  # FIX (EN)
             placeholder="https://i.imgur.com/xxxx.png",
             required=False
         )
@@ -330,14 +330,14 @@ class NombreTorneoModal(discord.ui.Modal):
         if logo:
             if not logo.startswith("https://i.imgur.com/"):
                 await interaction.response.send_message(
-                    "❌ El logo debe ser un link directo de Imgur (i.imgur.com)",
+                    "❌ The logo must be a direct Imgur link (i.imgur.com)",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
             if not logo.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
                 await interaction.response.send_message(
-                    "❌ El logo debe terminar en .png, .jpg, .jpeg o .webp",
+                    "❌ The logo must end with .png, .jpg, .jpeg or .webp",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -351,24 +351,24 @@ class NombreTorneoModal(discord.ui.Modal):
         save_data(data)
 
         await interaction.response.send_message(
-            "✅ Nombre y logo guardados correctamente",
+            "✅ Tournament name and logo saved successfully",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-# MODAL Equipo-REV - REV
+# MODAL Equipo-REV - REV-EN
 # =============================
 class EquipoModal(discord.ui.Modal):
     def __init__(self, torneo_uid: str):
-        super().__init__(title="Añadir equipo")
+        super().__init__(title="Add team")  # FIX (EN)
         self.torneo_uid = torneo_uid
 
         self.nombre = discord.ui.TextInput(
-            label="Nombre del equipo",
-            placeholder="Ej: Team Alpha"
+            label="Team name",  # FIX (EN)
+            placeholder="e.g.: Team Alpha"  # FIX (EN)
         )
 
         self.logo = discord.ui.TextInput(
-            label="Logo del equipo (Imgur directo opcional)",
+            label="Team logo (direct Imgur link, optional)",  # FIX (EN)
             placeholder="https://i.imgur.com/xxxx.png",
             required=False
         )
@@ -382,14 +382,14 @@ class EquipoModal(discord.ui.Modal):
         if logo:
             if not logo.startswith("https://i.imgur.com/"):
                 await interaction.response.send_message(
-                    "❌ El logo debe ser un link directo de Imgur",
+                    "❌ The logo must be a direct Imgur link from Imgur",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
             if not logo.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
                 await interaction.response.send_message(
-                    "❌ El logo debe terminar en .png, .jpg, .jpeg o .webp",
+                    "❌ The logo must end with .png, .jpg, .jpeg or .webp",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -411,26 +411,26 @@ class EquipoModal(discord.ui.Modal):
         save_data(data)
 
         await interaction.response.send_message(
-            f"✅ Equipo **{self.nombre.value}** añadido",
+            f"✅ Team **{self.nombre.value}** added successfully",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-#  MODAL FECHA + ESTADO - Rev (MULTI)
+#  MODAL FECHA + ESTADO - Rev (MULTI)-EN
 # =============================
 class FechaEstadoModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title=f"Actualizar Partido {partido_id}")
+        super().__init__(title=f"Update Match {partido_id}")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid
 
         self.fecha = discord.ui.TextInput(
-            label="Fecha y hora",
-            placeholder="Ej: 15/01/2026 20:00"
+            label="Date and time",  # FIX (EN)
+            placeholder="e.g.: 15/01/2026 20:00"  # FIX (EN)
         )
 
         self.estado = discord.ui.TextInput(
-            label="Estado del partido",
-            placeholder="🕒 Pendiente / 🟢 En juego / 🔴 Finalizado"
+            label="Match status",  # FIX (EN)
+            placeholder="🕒 Pending / 🟢 Live / 🔴 Finished"  # FIX (EN)
         )
 
         self.add_item(self.fecha)
@@ -458,24 +458,24 @@ class FechaEstadoModal(discord.ui.Modal):
                 await actualizar_mensaje_publico_partido(interaction.guild, p)
 
                 await interaction.followup.send(
-                    "✅ Partido actualizado correctamente",
+                    "✅ Match updated successfully",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-#  MODAL EDITAR SOLO FECHA - Rev (MULTI)
+#  MODAL EDITAR SOLO FECHA - Rev (MULTI)-EN
 # =============================
 class EditarFechaModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title=f"Editar fecha - Partido {partido_id}")
+        super().__init__(title=f"Edit date - Match {partido_id}")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid
 
         self.fecha = discord.ui.TextInput(
-            label="Nueva fecha y hora",
-            placeholder="Ej: 18/01/2026 21:00"
+            label="New date and time",  # FIX (EN)
+            placeholder="e.g.: 18/01/2026 21:00"  # FIX (EN)
         )
 
         self.add_item(self.fecha)
@@ -501,24 +501,24 @@ class EditarFechaModal(discord.ui.Modal):
                 await actualizar_mensaje_publico_partido(interaction.guild, p)
 
                 await interaction.followup.send(
-                    "✅ Fecha actualizada correctamente",
+                    "✅ Date updated successfully",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL EDITAR SOLO ESTADO - MULTI
+# MODAL EDITAR SOLO ESTADO - MULTI-EN
 # =============================
 class EditarEstadoModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title=f"Editar estado - Partido {partido_id}")
+        super().__init__(title=f"Edit status - Match {partido_id}")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid
 
         self.estado = discord.ui.TextInput(
-            label="Estado del partido",
-            placeholder="🕒 Pendiente / 🟢 En juego / 🔴 Finalizado"
+            label="Match status",  # FIX (EN)
+            placeholder="🕒 Pending / 🟢 Live / 🔴 Finished"  # FIX (EN)
         )
 
         self.add_item(self.estado)
@@ -543,23 +543,23 @@ class EditarEstadoModal(discord.ui.Modal):
                 await actualizar_mensaje_publico_partido(interaction.guild, p)
 
                 await interaction.followup.send(
-                    "✅ Estado actualizado correctamente",
+                    "✅ Status updated successfully",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL Resultado - REV (FIX)  [MULTI]
+# MODAL Resultado - REV (FIX)  [MULTI]-EN
 # =============================
 class ResultadoModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title=f"Resultado Partido {partido_id}")
+        super().__init__(title=f"Match Result {partido_id}")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid  # ✅ NUEVO
 
         self.resultado = discord.ui.TextInput(
-            label="Resultado (Ej: 2-1)"
+            label="Result (e.g.: 2-1)"  # FIX (EN)
         )
         self.add_item(self.resultado)
 
@@ -569,13 +569,19 @@ class ResultadoModal(discord.ui.Modal):
 
         res = self.resultado.value.split("-")
         if len(res) != 2:
-            await interaction.followup.send("❌ Formato inválido. Usa 2-1", ephemeral=True)
+            await interaction.followup.send(
+                "❌ Invalid format. Use 2-1",  # FIX (EN)
+                ephemeral=True
+            )
             return
 
         try:
             g1, g2 = int(res[0]), int(res[1])
         except ValueError:
-            await interaction.followup.send("❌ Formato inválido. Usa números (Ej: 2-1)", ephemeral=True)
+            await interaction.followup.send(
+                "❌ Invalid format. Use numbers (e.g.: 2-1)",  # FIX (EN)
+                ephemeral=True
+            )
             return
 
         # ✅ MULTI: cargar data y tomar torneo por UID
@@ -590,7 +596,7 @@ class ResultadoModal(discord.ui.Modal):
 
                 # ===== GUARDAR RESULTADO Y BLOQUEAR =====
                 p["resultado"] = self.resultado.value
-                p["estado"] = "🔴 Finalizado"
+                p["estado"] = "🔴 Finished"  # FIX (EN)
                 p["bloqueado"] = True
                 save_data(data)
 
@@ -632,7 +638,7 @@ class ResultadoModal(discord.ui.Modal):
                 save_data(data)
 
                 await interaction.followup.send(
-                    "🏁 Resultado registrado, partido cerrado y mensajes actualizados",
+                    "🏁 Result recorded, match locked and messages updated",  # FIX (EN)
                     ephemeral=True
                 )
 
@@ -641,7 +647,7 @@ class ResultadoModal(discord.ui.Modal):
                     guild = interaction.guild
                     canal_tabla = await crear_categoria_y_canal(
                         guild,
-                        f"📊 CLASIFICACIÓN - {self.torneo_uid}",
+                        f"📊 STANDINGS - {self.torneo_uid}",  # FIX (EN)
                         f"tabla-{self.torneo_uid.lower()}"
                     )
 
@@ -656,7 +662,7 @@ class ResultadoModal(discord.ui.Modal):
                         pass
 
                     embed = discord.Embed(
-                        title="📊 Tabla de posiciones",
+                        title="📊 Standings",  # FIX (EN)
                         color=discord.Color.green()
                     )
 
@@ -671,24 +677,24 @@ class ResultadoModal(discord.ui.Modal):
 
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL Añadir streamers - REV (FIX) [MULTI]
+# MODAL Añadir streamers - REV (FIX) [MULTI]-EN
 # =============================
 class AñadirStreamerModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title="Añadir streamers (máx 2)")
+        super().__init__(title="Add streamers (max 2)")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid
 
         self.ids = discord.ui.TextInput(
-            label="IDs a aprobar (máx 2, separados por coma)",
+            label="IDs to approve (max 2, comma-separated)",  # FIX (EN)
             placeholder="123456789,987654321"
         )
 
         self.canal = discord.ui.TextInput(
-            label="Canal del stream (URL o #canal)",
-            placeholder="https://twitch.tv/usuario"
+            label="Stream channel (URL or #channel)",  # FIX (EN)
+            placeholder="https://twitch.tv/username"  # FIX (EN)
         )
 
         self.add_item(self.ids)
@@ -706,7 +712,7 @@ class AñadirStreamerModal(discord.ui.Modal):
 
         if len(ids) > 2:
             await interaction.followup.send(
-                "❌ Solo se permiten **2 streamers máximo**",
+                "❌ Only **2 streamers maximum** are allowed",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -750,24 +756,24 @@ class AñadirStreamerModal(discord.ui.Modal):
                 await actualizar_todos_los_mensajes_partido(interaction.guild, p)
 
                 await interaction.followup.send(
-                    "✅ Streamers aprobados y asignados correctamente",
+                    "✅ Streamers approved and assigned successfully",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL Asignar Capitán - REV  [MULTI]
+# MODAL Asignar Capitán - REV  [MULTI]-EN
 # =============================
 class AsignarCapitanModal(discord.ui.Modal):
     def __init__(self, partido_id, equipo, torneo_uid: str):
-        super().__init__(title=f"Asignar Capitán Equipo {equipo}")
+        super().__init__(title=f"Assign Captain – Team {equipo}")  # FIX (EN)
         self.partido_id = partido_id
         self.equipo = equipo
         self.torneo_uid = torneo_uid
 
         self.usuario = discord.ui.InputText(
-            label="ID del usuario capitán",
+            label="Captain user ID",  # FIX (EN)
             placeholder="1234567890"
         )
         self.add_item(self.usuario)
@@ -779,7 +785,7 @@ class AsignarCapitanModal(discord.ui.Modal):
         try:
             user_id = int(self.usuario.value)
         except ValueError:
-            await interaction.followup.send("❌ ID inválido", ephemeral=True)
+            await interaction.followup.send("❌ Invalid ID", ephemeral=True)  # FIX (EN)
             return
 
         global data
@@ -807,7 +813,7 @@ class AsignarCapitanModal(discord.ui.Modal):
 
                 if user_id in capitanes:
                     await interaction.followup.send(
-                        "⚠️ Ese usuario ya es capitán",
+                        "⚠️ This user is already a captain",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -826,7 +832,7 @@ class AsignarCapitanModal(discord.ui.Modal):
                 )
 
                 await interaction.followup.send(
-                    f"✅ Capitán asignado al **Equipo {self.equipo}**",
+                    f"✅ Captain assigned to **Team {self.equipo}**",  # FIX (EN)
                     ephemeral=True
                 )
 
@@ -851,19 +857,19 @@ class AsignarCapitanModal(discord.ui.Modal):
                 return
 
         # ✅ si no se encontró el partido
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL Quitar capitan - REV (FIX SIN BORRAR LÓGICA) [MULTI]
+# MODAL Quitar capitan - REV (FIX SIN BORRAR LÓGICA) [MULTI]-EN
 # =============================
 class QuitarCapitanModal(discord.ui.Modal):
     def __init__(self, partido_id, equipo, torneo_uid: str):
-        super().__init__(title=f"Quitar Capitán Equipo {equipo}")
+        super().__init__(title=f"Remove Captain – Team {equipo}")  # FIX (EN)
         self.partido_id = partido_id
         self.equipo = equipo
         self.torneo_uid = torneo_uid
 
         self.usuario = discord.ui.InputText(
-            label="ID del usuario a quitar",
+            label="User ID to remove",  # FIX (EN)
             placeholder="1234567890"
         )
         self.add_item(self.usuario)
@@ -875,7 +881,7 @@ class QuitarCapitanModal(discord.ui.Modal):
         try:
             user_id = int(self.usuario.value)
         except ValueError:
-            await interaction.followup.send("❌ ID inválido", ephemeral=True)
+            await interaction.followup.send("❌ Invalid ID", ephemeral=True)  # FIX (EN)
             return
 
         global data
@@ -911,28 +917,31 @@ class QuitarCapitanModal(discord.ui.Modal):
                     await actualizar_mensaje_publico_partido(interaction.guild, p)
 
                     await interaction.followup.send(
-                        "🗑️ Capitán removido correctamente",
+                        "🗑️ Captain removed successfully",  # FIX (EN)
                         ephemeral=True
                     )
                     return
 
                 # si encontró el partido pero ese user no es capitán
-                await interaction.followup.send("❌ Ese usuario no es capitán", ephemeral=True)
+                await interaction.followup.send(
+                    "❌ This user is not a captain",  # FIX (EN)
+                    ephemeral=True
+                )
                 return
 
         # si no encontró el partido
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# MODAL Map Pool - REV  [MULTI]
+# MODAL Map Pool - REV  [MULTI]-EN
 # =============================
 class MapPoolModal(discord.ui.Modal):
     def __init__(self, partido_id, torneo_uid: str):
-        super().__init__(title="Pool de mapas")
+        super().__init__(title="Map pool")  # FIX (EN)
         self.partido_id = partido_id
         self.torneo_uid = torneo_uid
 
         self.mapas = discord.ui.InputText(
-            label="Mapas del pool (uno por línea)",
+            label="Map pool maps (one per line)",  # FIX (EN)
             placeholder="Omaha\nCarentan\nUtah\nHurtgen",
             style=discord.InputTextStyle.long
         )
@@ -947,7 +956,7 @@ class MapPoolModal(discord.ui.Modal):
 
         if len(mapas) < 3:
             await interaction.followup.send(
-                "🚫 Deben haber al menos 3 mapas",
+                "🚫 At least 3 maps are required",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1011,53 +1020,59 @@ class MapPoolModal(discord.ui.Modal):
             if canal:
                 nombre_ganador = p["a"] if ganador == "A" else p["b"]
                 await canal.send(
-                    f"🎲 **Coinflip realizado**\n"
-                    f"🏆 Ganador: **{nombre_ganador}**\n\n"
-                    f"👉 Elige tu ventaja:",
+                    f"🎲 **Coinflip completed**\n"  # FIX (EN)
+                    f"🏆 Winner: **{nombre_ganador}**\n\n"  # FIX (EN)
+                    f"👉 Choose your advantage:",  # FIX (EN)
                     view=ElegirTipoBanView(guild_id, self.torneo_uid, self.partido_id)
                 )
 
                 embed = discord.Embed(
-                    title="🪙 Coinflip realizado",
+                    title="🪙 Coinflip completed",  # FIX (EN)
                     description=f"⚔️ **{p['a']} vs {p['b']}**",
                     color=discord.Color.gold()
                 )
 
                 embed.add_field(
-                    name="🏆 Ganador del coinflip",
+                    name="🏆 Coinflip winner",  # FIX (EN)
                     value=f"**{nombre_ganador}**",
                     inline=False
                 )
 
                 embed.add_field(
-                    name="🔀 Elección",
-                    value="Debe elegir **Extra Ban** o **Final Ban**",
+                    name="🔀 Selection",  # FIX (EN)
+                    value="Must choose **Extra Ban** or **Final Ban**",  # FIX (EN)
                     inline=False
                 )
 
-                embed.set_footer(text="Fase de baneo iniciada automáticamente")
+                embed.set_footer(
+                    text="Ban phase started automatically"  # FIX (EN)
+                )
                 await canal.send(embed=embed)
 
             # =============================
             # ✅ CONFIRMACIÓN ADMIN
             # =============================
             await interaction.followup.send(
-                "✅ Coinflip realizado y publicado en el canal del partido",
+                "✅ Coinflip completed and posted in the match channel",  # FIX (EN)
                 ephemeral=True
             )
             return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-# 📝 MODAL RESULTADO ELIMINATORIO - REV [MULTI]
+# 📝 MODAL RESULTADO ELIMINATORIO - REV [MULTI]-EN
 # =============================
 class ResultadoEliminatoriaModal(discord.ui.Modal):
     def __init__(self, torneo_uid: str):
-        super().__init__(title="Resultado eliminatorio")
+        super().__init__(title="Elimination result")  # FIX (EN)
         self.torneo_uid = torneo_uid
 
-        self.match_id = discord.ui.TextInput(label="ID del match")
-        self.ganador = discord.ui.TextInput(label="Equipo ganador")
+        self.match_id = discord.ui.TextInput(
+            label="Match ID"  # FIX (EN)
+        )
+        self.ganador = discord.ui.TextInput(
+            label="Winning team"  # FIX (EN)
+        )
 
         self.add_item(self.match_id)
         self.add_item(self.ganador)
@@ -1068,7 +1083,10 @@ class ResultadoEliminatoriaModal(discord.ui.Modal):
         try:
             mid = int(self.match_id.value)
         except ValueError:
-            await interaction.followup.send("❌ ID inválido", ephemeral=True)
+            await interaction.followup.send(
+                "❌ Invalid ID",  # FIX (EN)
+                ephemeral=True
+            )
             return
 
         global data
@@ -1081,23 +1099,29 @@ class ResultadoEliminatoriaModal(discord.ui.Modal):
             if b["id"] == mid:
 
                 if b.get("bloqueado"):
-                    await interaction.followup.send("🔒 Match cerrado", ephemeral=True)
+                    await interaction.followup.send(
+                        "🔒 Match locked",  # FIX (EN)
+                        ephemeral=True
+                    )
                     return
 
                 b["ganador"] = self.ganador.value
-                b["resultado"] = "Finalizado"
+                b["resultado"] = "Finished"  # FIX (EN)
                 b["bloqueado"] = True
 
                 set_torneo_activo_multi(data, guild_id, self.torneo_uid)
                 save_data(data)
 
                 await interaction.followup.send(
-                    "🏁 Resultado eliminatorio registrado",
+                    "🏁 Elimination result recorded",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Match no encontrado", ephemeral=True)
+        await interaction.followup.send(
+            "❌ Match not found",  # FIX (EN)
+            ephemeral=True
+        )
 # =============================
 # VIEWS ADMIN CONFIG - REV  [MULTI SIN BORRAR LÓGICA]
 # =============================
@@ -1114,7 +1138,7 @@ class PanelConfig(discord.ui.View):
     # BOTÓN NOMBRE / LOGO
     # =============================
     @discord.ui.button(
-        label="🏷️ Nombre / Logo",
+        label="🏷️ Name / Logo",  # FIX (EN)
         style=discord.ButtonStyle.primary
     )
     async def nombre(self, button, interaction: discord.Interaction):
@@ -1130,7 +1154,7 @@ class PanelConfig(discord.ui.View):
     # BOTÓN AÑADIR EQUIPO
     # =============================
     @discord.ui.button(
-        label="➕ Añadir equipo",
+        label="➕ Add team",  # FIX (EN)
         style=discord.ButtonStyle.success
     )
     async def equipo(self, button, interaction: discord.Interaction):
@@ -1146,7 +1170,7 @@ class PanelConfig(discord.ui.View):
     # BOTÓN VER EQUIPOS
     # =============================
     @discord.ui.button(
-        label="📋 Ver equipos",
+        label="📋 View teams",  # FIX (EN)
         style=discord.ButtonStyle.secondary
     )
     async def ver_equipos(self, button, interaction: discord.Interaction):
@@ -1162,7 +1186,7 @@ class PanelConfig(discord.ui.View):
 
         if not equipos:
             await interaction.response.send_message(
-                "❌ No hay equipos inscritos todavía",
+                "❌ No teams registered yet",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1178,7 +1202,7 @@ class PanelConfig(discord.ui.View):
             await interaction.channel.send(embed=embed)
 
         await interaction.response.send_message(
-            "📋 Equipos publicados correctamente",
+            "📋 Teams published successfully",  # FIX (EN)
             ephemeral=True
         )
 
@@ -1186,7 +1210,7 @@ class PanelConfig(discord.ui.View):
     # BOTÓN INICIAR TORNEO ✅
     # =============================
     @discord.ui.button(
-        label="🚀 Iniciar torneo",
+        label="🚀 Start tournament",  # FIX (EN)
         style=discord.ButtonStyle.danger
     )
     async def iniciar(self, button, interaction: discord.Interaction):
@@ -1202,7 +1226,7 @@ class PanelConfig(discord.ui.View):
 
         if not torneo.get("nombre") or len(torneo.get("equipos", [])) < 2:
             await interaction.followup.send(
-                "❌ Debes definir nombre y al menos 2 equipos",
+                "❌ You must set a name and at least 2 teams",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1212,7 +1236,7 @@ class PanelConfig(discord.ui.View):
         # =============================
         embed = discord.Embed(
             title=f"🏆 {torneo['nombre']}",
-            description="Torneo iniciado oficialmente",
+            description="Tournament started officially",  # FIX (EN)
             color=discord.Color.gold()
         )
 
@@ -1232,7 +1256,7 @@ class PanelConfig(discord.ui.View):
             await interaction.channel.send(embed=e_embed)
 
         await interaction.channel.send(
-            "🎮 Panel del torneo",
+            "🎮 Tournament panel",  # FIX (EN)
             # ✅ MULTI: llamado correcto -> (guild_id, admin_id, torneo_uid)
             view=(PanelTorneo(guild_id, torneo.get("creador"), uid)
                   if True else PanelTorneo(guild_id, torneo.get("creador"), uid))
@@ -1246,8 +1270,8 @@ class PanelConfig(discord.ui.View):
 
         canal_info = await crear_categoria_y_canal(
             guild,
-            f"🏆 TORNEO - {nombre_torneo} - {uid}",     # ✅ sufijo UID
-            f"info-general-{uid.lower()}"              # ✅ sufijo UID
+            f"🏆 TOURNAMENT - {nombre_torneo} - {uid}",     # FIX (EN)
+            f"general-info-{uid.lower()}"                   # FIX (EN)
         )
 
         # ✅ AÑADIDO: track canal + categoría (para poder borrar TODO por UID)
@@ -1261,8 +1285,8 @@ class PanelConfig(discord.ui.View):
 
         canal_equipos = await crear_categoria_y_canal(
             guild,
-            f"🏆 TORNEO - {nombre_torneo} - {uid}",     # ✅ sufijo UID
-            f"equipos-{uid.lower()}"                   # ✅ sufijo UID
+            f"🏆 TOURNAMENT - {nombre_torneo} - {uid}",     # FIX (EN)
+            f"teams-{uid.lower()}"                          # FIX (EN)
         )
 
         # ✅ AÑADIDO: track canal + categoría
@@ -1282,7 +1306,7 @@ class PanelConfig(discord.ui.View):
 
         embed_info = discord.Embed(
             title=f"🏆 {nombre_torneo}",
-            description="Torneo iniciado oficialmente",
+            description="Tournament started officially",  # FIX (EN)
             color=discord.Color.gold()
         )
 
@@ -1306,16 +1330,16 @@ class PanelConfig(discord.ui.View):
         save_data(data)
 
         await interaction.followup.send(
-            "✅ Torneo publicado correctamente",
+            "✅ Tournament published successfully",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-#  BOTÓN ADMIN FECHA / ESTADO - REV (FIX) [MULTI]
+#  BOTÓN ADMIN FECHA / ESTADO - REV (FIX) [MULTI] -EN
 # =============================
 class EditarPartidoButton(discord.ui.Button):
     def __init__(self, admin_id, partido_id, torneo_uid: str):
         super().__init__(
-            label=f"🕒 Partido {partido_id}",
+            label=f"🕒 Match {partido_id}",  # FIX (EN)
             style=discord.ButtonStyle.success
         )
         self.admin_id = admin_id
@@ -1325,7 +1349,7 @@ class EditarPartidoButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1341,7 +1365,7 @@ class EditarPartidoButton(discord.ui.Button):
             if str(p.get("id")) == str(self.partido_id):  # ✅ FIX str/int
                 if p.get("bloqueado"):
                     await interaction.response.send_message(
-                        "🔒 Este partido ya fue cerrado y no se puede modificar.",
+                        "🔒 This match is already locked and cannot be modified.",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -1350,7 +1374,7 @@ class EditarPartidoButton(discord.ui.Button):
             FechaEstadoModal(self.partido_id, self.torneo_uid)  # ✅ ahora pide UID
         )
 # =============================
-# View Formato Partidos - REV  [MULTI]
+# View Formato Partidos - REV  [MULTI] - EN
 # =============================
 class FormatoPartidosView(discord.ui.View):
     def __init__(self, admin_id, torneo_uid: str):
@@ -1361,14 +1385,14 @@ class FormatoPartidosView(discord.ui.View):
     async def interaction_check(self, interaction):
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo el administrador puede elegir.",
+                "❌ Only the administrator can choose.",  # FIX (EN)
                 ephemeral=True
             )
             return False
         return True
 
     @discord.ui.button(
-        label="⚔️ Partido único",
+        label="⚔️ Single match",  # FIX (EN)
         style=discord.ButtonStyle.primary
     )
     async def unico(self, button, interaction):
@@ -1385,14 +1409,14 @@ class FormatoPartidosView(discord.ui.View):
         save_data(data)
 
         await interaction.response.edit_message(
-            content="✅ Formato seleccionado: **Partido único**",
+            content="✅ Format selected: **Single match**",  # FIX (EN)
             view=None
         )
 
         await ejecutar_sorteo(interaction)
 
     @discord.ui.button(
-        label="🔁 Ida y vuelta",
+        label="🔁 Home & Away",  # FIX (EN)
         style=discord.ButtonStyle.success
     )
     async def ida_vuelta(self, button, interaction):
@@ -1409,18 +1433,18 @@ class FormatoPartidosView(discord.ui.View):
         save_data(data)
 
         await interaction.response.edit_message(
-            content="✅ Formato seleccionado: **Ida y vuelta**",
+            content="✅ Format selected: **Home & Away**",  # FIX (EN)
             view=None
         )
 
         await ejecutar_sorteo(interaction)
 # =============================
-#  Boton Sorteo - REV (multi-torneo)  [MULTI REAL]
+#  Boton Sorteo - REV (multi-torneo)  [MULTI REAL] - ENG
 # =============================
 class SorteoButton(discord.ui.Button):
     def __init__(self, torneo_uid: str, admin_id):
         super().__init__(
-            label="🎲 Sortear partidos",
+            label="🎲 Draw matches",  # FIX (EN)
             style=discord.ButtonStyle.primary
         )
         self.torneo_uid = torneo_uid  # ✅ antes era torneo_id
@@ -1431,7 +1455,7 @@ class SorteoButton(discord.ui.Button):
 
         if interaction.user.id != self.admin_id:
             await interaction.followup.send(
-                "❌ Solo admin",
+                "❌ Admin only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1444,19 +1468,19 @@ class SorteoButton(discord.ui.Button):
 
         if torneo.get("partidos"):
             await interaction.followup.send(
-                "❌ Los partidos ya fueron sorteados",
+                "❌ Matches have already been drawn",  # FIX (EN)
                 ephemeral=True
             )
             return
 
         # ✅ SOLO preguntar formato (amarrado al UID correcto)
         await interaction.followup.send(
-            "⚙️ ¿Cómo se jugarán los partidos?",
+            "⚙️ How will the matches be played?",  # FIX (EN)
             view=FormatoPartidosView(self.admin_id, self.torneo_uid),
             ephemeral=True
         )
 # =============================
-#  Def Ejecutar Sorteo - REV  [MULTI SIN BORRAR LÓGICA]  (FIX PERSISTENCIA IDS)
+#  Def Ejecutar Sorteo - REV  [MULTI SIN BORRAR LÓGICA]  (FIX PERSISTENCIA IDS) - EN
 # =============================
 async def ejecutar_sorteo(interaction):
     global data
@@ -1484,8 +1508,8 @@ async def ejecutar_sorteo(interaction):
                 "id": pid,
                 "a": a,
                 "b": b,
-                "fecha": "⏰ Sin definir",
-                "estado": "🕒 Pendiente",
+                "fecha": "⏰ Not set",  # FIX (EN)
+                "estado": "🕒 Pending",  # FIX (EN)
 
                 # ✅ MULTI: amarrar partido a su torneo
                 "torneo_uid": uid
@@ -1498,8 +1522,8 @@ async def ejecutar_sorteo(interaction):
                     "id": pid,
                     "a": b,
                     "b": a,
-                    "fecha": "⏰ Sin definir",
-                    "estado": "🕒 Pendiente",
+                    "fecha": "⏰ Not set",  # FIX (EN)
+                    "estado": "🕒 Pending",  # FIX (EN)
 
                     # ✅ MULTI: amarrar partido a su torneo
                     "torneo_uid": uid
@@ -1517,8 +1541,8 @@ async def ejecutar_sorteo(interaction):
     # 📺 Canal público de partidos (aislado por UID)
     canal_partidos = await crear_categoria_y_canal(
         guild,
-        f"⚔️ PARTIDOS - {uid}",
-        f"partidos-a-disputar-{uid.lower()}"
+        f"⚔️ MATCHES - {uid}",  # FIX (EN)
+        f"matches-to-play-{uid.lower()}"  # FIX (EN)
     )
 
     # ✅ AÑADIDO: TRACK categoría/canal público (para borrado por IDs)
@@ -1536,8 +1560,8 @@ async def ejecutar_sorteo(interaction):
     # 🛠️ Canal ADMIN (aislado por UID)
     canal_admin = await crear_categoria_y_canal(
         guild,
-        f"⚙️ ADMIN TORNEO - {uid}",
-        f"admin-partidos-{uid.lower()}"
+        f"⚙️ TOURNAMENT ADMIN - {uid}",  # FIX (EN)
+        f"admin-matches-{uid.lower()}"  # FIX (EN)
     )
 
     # ✅ AÑADIDO: TRACK categoría/canal admin (para borrado por IDs)
@@ -1591,7 +1615,7 @@ async def ejecutar_sorteo(interaction):
             set_torneo_activo_multi(data, guild_id, uid)
             save_data(data)
         except Exception as e:
-            print("⚠️ No pude persistir ids públicos:", repr(e))
+            print("⚠️ Could not persist public IDs:", repr(e))  # FIX (EN)
 
         # ✅ AÑADIDO: re-track por si el canal/categoría cambió o venía vacío
         try:
@@ -1624,7 +1648,7 @@ async def ejecutar_sorteo(interaction):
         view.add_item(IniciarFaseBaneoButton(p["id"], uid))
 
         await canal_admin.send(
-            f"🛠️ **Panel administrador – Partido #{p['id']}**\n"
+            f"🛠️ **Admin panel – Match #{p['id']}**\n"  # FIX (EN)
             f"⚔️ **{p['a']} vs {p['b']}**",
             view=view
         )
@@ -1642,16 +1666,16 @@ async def ejecutar_sorteo(interaction):
             pass
 
     await interaction.followup.send(
-        "✅ Partidos creados correctamente según el formato elegido",
+        "✅ Matches created successfully based on the selected format",  # FIX (EN)
         ephemeral=True
     )
 # =============================
-#  Boton Editar Fecha - REV  [MULTI SIN BORRAR LÓGICA]
+#  Boton Editar Fecha - REV  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class EditarFechaButton(discord.ui.Button):
     def __init__(self, admin_id, partido_id, torneo_uid: str):
         super().__init__(
-            label="✏️ Editar fecha",
+            label="✏️ Edit date",  # FIX (EN)
             style=discord.ButtonStyle.secondary
         )
         self.admin_id = admin_id
@@ -1661,7 +1685,7 @@ class EditarFechaButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1679,7 +1703,7 @@ class EditarFechaButton(discord.ui.Button):
             # 🔒 Partido cerrado
             if p.get("bloqueado"):
                 await interaction.response.send_message(
-                    "🔒 Este partido ya está cerrado. No se puede editar la fecha.",
+                    "🔒 This match is already closed. The date cannot be edited.",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -1687,8 +1711,8 @@ class EditarFechaButton(discord.ui.Button):
             # ⚠️ Fecha no definida previamente
             if p["fecha"] == "⏰ Sin definir":
                 await interaction.response.send_message(
-                    "⚠️ Primero debes definir la fecha desde **Partido "
-                    f"{self.partido_id}**",
+                    "⚠️ You must first set the date from **Match "
+                    f"{self.partido_id}**",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -1698,12 +1722,12 @@ class EditarFechaButton(discord.ui.Button):
             )
             return
 # =============================
-#  Boton Editar Estado - REV  [MULTI SIN BORRAR LÓGICA]
+#  Boton Editar Estado - REV  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class EditarEstadoButton(discord.ui.Button):
     def __init__(self, admin_id, partido_id, torneo_uid: str):
         super().__init__(
-            label="🟢 Editar estado",
+            label="🟢 Edit status",  # FIX (EN)
             style=discord.ButtonStyle.success
         )
         self.admin_id = admin_id
@@ -1713,7 +1737,7 @@ class EditarEstadoButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1730,7 +1754,7 @@ class EditarEstadoButton(discord.ui.Button):
 
             if p.get("bloqueado"):
                 await interaction.response.send_message(
-                    "🔒 Este partido ya está cerrado. No se puede editar el estado.",
+                    "🔒 This match is already closed. The status cannot be edited.",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -1740,12 +1764,12 @@ class EditarEstadoButton(discord.ui.Button):
             )
             return
 # =============================
-#  Boton Ver partidos - REV  [MULTI SIN BORRAR LÓGICA]
+#  Boton Ver partidos - REV  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class VerPartidosButton(discord.ui.Button):
     def __init__(self, torneo_uid: str):
         super().__init__(
-            label="📅 Ver partidos",
+            label="📅 View matches",  # FIX (EN)
             style=discord.ButtonStyle.secondary
         )
         self.torneo_uid = torneo_uid  # ✅ nuevo
@@ -1761,7 +1785,7 @@ class VerPartidosButton(discord.ui.Button):
 
         if not partidos:
             await interaction.response.send_message(
-                "❌ No hay partidos",
+                "❌ There are no matches",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1770,31 +1794,31 @@ class VerPartidosButton(discord.ui.Button):
 
         for p in partidos:
             embed = discord.Embed(
-                title=f"⚔️ Partido {p['id']}",
+                title=f"⚔️ Match {p['id']}",  # FIX (EN)
                 description=f"{p['a']} 🆚 {p['b']}",
                 color=discord.Color.blue()
             )
 
             embed.add_field(
-                name="Fecha",
+                name="Date",  # FIX (EN)
                 value=p.get("fecha", "⏰ Sin definir"),
                 inline=False
             )
 
             embed.add_field(
-                name="Estado",
+                name="Status",  # FIX (EN)
                 value=p.get("estado", "🕒 Pendiente"),
                 inline=False
             )
 
             await interaction.channel.send(embed=embed)
 # =============================
-#  Boton Resultado - REV  [MULTI SIN BORRAR LÓGICA]
+#  Boton Resultado - REV  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class ResultadoButton(discord.ui.Button):
     def __init__(self, admin_id, partido_id, torneo_uid: str):
         super().__init__(
-            label="🏁 Resultado",
+            label="🏁 Set result",  # FIX (EN)
             style=discord.ButtonStyle.success
         )
         self.admin_id = admin_id
@@ -1805,7 +1829,7 @@ class ResultadoButton(discord.ui.Button):
 
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo admin",
+                "❌ Admin only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1824,14 +1848,14 @@ class ResultadoButton(discord.ui.Button):
 
         if not partido:
             await interaction.response.send_message(
-                "❌ Partido no encontrado",
+                "❌ Match not found",  # FIX (EN)
                 ephemeral=True
             )
             return
 
         if partido.get("bloqueado"):
             await interaction.response.send_message(
-                "🔒 Este partido ya fue finalizado",
+                "🔒 This match has already been finished",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1841,12 +1865,12 @@ class ResultadoButton(discord.ui.Button):
             ResultadoModal(self.partido_id, self.torneo_uid)
         )
 # =============================
-#  BOTÓN CREAR CANAL DE PARTIDO - REV (FIX) [MULTI SIN BORRAR LÓGICA]
+#  BOTÓN CREAR CANAL DE PARTIDO - REV (FIX) [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class CrearCanalPartidoButton(discord.ui.Button):
     def __init__(self, admin_id, partido_id, torneo_uid: str):
         super().__init__(
-            label="📺 Crear canal del partido",
+            label="📺 Create match channel",  # FIX (EN)
             style=discord.ButtonStyle.primary
         )
         self.admin_id = admin_id
@@ -1856,7 +1880,7 @@ class CrearCanalPartidoButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1876,7 +1900,7 @@ class CrearCanalPartidoButton(discord.ui.Button):
 
                 if p.get("canal_partido_id"):
                     await interaction.followup.send(
-                        "❌ El canal del partido ya fue creado",
+                        "❌ The match channel has already been created",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -1886,7 +1910,7 @@ class CrearCanalPartidoButton(discord.ui.Button):
                 # =============================
                 # 📁 OBTENER / CREAR CATEGORÍA (aislada por UID)
                 # =============================
-                categoria_nombre = f"📛 CANALES FASE DE BANEO - {self.torneo_uid}"
+                categoria_nombre = f"📛 BAN PHASE CHANNELS - {self.torneo_uid}"  # FIX (EN)
                 categoria = discord.utils.get(
                     guild.categories,
                     name=categoria_nombre
@@ -1904,7 +1928,7 @@ class CrearCanalPartidoButton(discord.ui.Button):
                     pass
 
                 nombre_canal = (
-                    f"partido-{p['id']}-{self.torneo_uid.lower()}-"
+                    f"match-{p['id']}-{self.torneo_uid.lower()}-"  # FIX (EN)
                     f"{p['a'].lower().replace(' ', '-')}-vs-"
                     f"{p['b'].lower().replace(' ', '-')}"
                 )
@@ -1939,28 +1963,28 @@ class CrearCanalPartidoButton(discord.ui.Button):
                 # 🧑‍✈️ MENSAJE PARA ASIGNAR CAPITANES
                 # =============================
                 await canal.send(
-                    "🧑‍✈️ **Asignación de capitanes**\n"
-                    "Solo administradores pueden asignar capitanes.\n\n"
-                    "🔒 Estos capitanes serán los únicos que podrán:\n"
-                    "• Elegir Extra / Final Ban\n"
-                    "• Banear mapas",
+                    "🧑‍✈️ **Captain assignment**\n"  # FIX (EN)
+                    "Only administrators can assign captains.\n\n"  # FIX (EN)
+                    "🔒 These captains will be the only ones who can:\n"  # FIX (EN)
+                    "• Choose Extra / Final Ban\n"
+                    "• Ban maps",  # FIX (EN)
                     view=AsignarCapitanesView(guild_id, self.torneo_uid, p["id"])
                 )
 
                 await interaction.followup.send(
-                    f"✅ Canal creado: {canal.mention}",
+                    f"✅ Channel created: {canal.mention}",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-#  Boton postular streamers - REV (FIX)  [MULTI SIN BORRAR LÓGICA]
+#  Boton postular streamers - REV (FIX)  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class PostularStreamerButton(discord.ui.Button):
     def __init__(self, partido_id, rol_streamer_id, torneo_uid: str):
         super().__init__(
-            label="📡 Quiero streamear",
+            label="📡 I want to stream",  # FIX (EN)
             style=discord.ButtonStyle.secondary
         )
         self.partido_id = partido_id
@@ -1974,7 +1998,7 @@ class PostularStreamerButton(discord.ui.Button):
         # 🔒 Solo streamers
         if self.rol_streamer_id not in [r.id for r in interaction.user.roles]:
             await interaction.followup.send(
-                "❌ Solo streamers pueden postularse",
+                "❌ Only streamers can apply",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -1995,7 +2019,7 @@ class PostularStreamerButton(discord.ui.Button):
 
                 if interaction.user.id in p["streamers_postulados"]:
                     await interaction.followup.send(
-                        "⚠️ Ya estás postulado para este partido",
+                        "⚠️ You have already applied for this match",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -2012,19 +2036,19 @@ class PostularStreamerButton(discord.ui.Button):
                 await actualizar_todos_los_mensajes_partido(interaction.guild, p)
 
                 await interaction.followup.send(
-                    "✅ Postulación enviada al admin",
+                    "✅ Application sent to the admin",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
-        await interaction.followup.send("❌ Partido no encontrado", ephemeral=True)
+        await interaction.followup.send("❌ Match not found", ephemeral=True)  # FIX (EN)
 # =============================
-#  Boton añadir Streamers - REV  [MULTI SIN BORRAR LÓGICA]
+#  Boton añadir Streamers - REV  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class AñadirStreamerButton(discord.ui.Button):
     def __init__(self, partido_id, torneo_uid: str):
         super().__init__(
-            label="➕ Añadir Streamers",
+            label="➕ Add Streamers",  # FIX (EN)
             style=discord.ButtonStyle.primary
         )
         self.partido_id = partido_id
@@ -2050,7 +2074,7 @@ class AñadirStreamerButton(discord.ui.Button):
 
         if not p:
             await interaction.response.send_message(
-                "❌ Partido no encontrado",
+                "❌ Match not found",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -2058,7 +2082,7 @@ class AñadirStreamerButton(discord.ui.Button):
         # 🏁 BLOQUEAR SI YA TIENE RESULTADO
         if p.get("resultado"):
             await interaction.response.send_message(
-                "🏁 Este partido ya fue finalizado, no se pueden añadir streamers",
+                "🏁 This match has already finished, streamers cannot be added",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -2066,7 +2090,7 @@ class AñadirStreamerButton(discord.ui.Button):
         # 🚫 BLOQUEAR SI YA HAY 2 STREAMERS
         if len(p.get("streamers_aprobados", [])) >= 2:
             await interaction.response.send_message(
-                "🚫 Este partido ya tiene 2 streamers añadidos",
+                "🚫 This match already has 2 streamers added",  # FIX (EN)
                 ephemeral=True
             )
             return
@@ -2075,12 +2099,12 @@ class AñadirStreamerButton(discord.ui.Button):
             AñadirStreamerModal(self.partido_id, self.torneo_uid)  # ✅ ahora pide UID
         )
 # =============================
-#  Boton Iniciar Fase Baneo - REV (FIX id str/int)  [MULTI SIN BORRAR LÓGICA]
+#  Boton Iniciar Fase Baneo - REV (FIX id str/int)  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class IniciarFaseBaneoButton(discord.ui.Button):
     def __init__(self, partido_id, torneo_uid: str):
         super().__init__(
-            label="🚫 Iniciar fase de baneo",
+            label="🚫 Start ban phase",  # FIX (EN)
             style=discord.ButtonStyle.danger
         )
         self.partido_id = partido_id
@@ -2102,22 +2126,22 @@ class IniciarFaseBaneoButton(discord.ui.Button):
 
                 if p.get("resultado"):
                     await interaction.response.send_message(
-                        "🏁 El partido ya finalizó",
+                        "🏁 The match has already finished",  # FIX (EN)
                         ephemeral=True
                     )
                     return
 
                 if p.get("fase_baneo", {}).get("activa"):
                     await interaction.response.send_message(
-                        "🚫 La fase de baneo ya está activa",
+                        "🚫 The ban phase is already active",  # FIX (EN)
                         ephemeral=True
                     )
                     return
 
                 if not hay_capitanes(p):
                     await interaction.response.send_message(
-                        "🔒 No se puede iniciar la fase de baneo.\n"
-                        "❌ Ambos equipos deben tener al menos un capitán asignado.",
+                        "🔒 The ban phase cannot be started.\n"  # FIX (EN)
+                        "❌ Both teams must have at least one captain assigned.",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -2564,7 +2588,7 @@ def obtener_mapas_validos(fase):
 
     return mapas_validos
 # =============================
-# Botón Next Map - FIX DATA SYNC  [MULTI SIN BORRAR LÓGICA]
+# Botón Next Map - FIX DATA SYNC  [MULTI SIN BORRAR LÓGICA] - EN
 # =============================
 class NextMapButton(discord.ui.Button):
     def __init__(self, partido_id, torneo_uid: str):
@@ -2724,7 +2748,7 @@ def calcular_resultado_final(fase):
 
     fase["facciones_finales"] = facciones
 # =============================
-# VIEW Elegir Tipo de Ban - REV  [MULTI SIN BORRAR LÓGICA]
+# VIEW Choose Ban Type - REV  [MULTI SIN BORRAR LÓGICA]  # FIX (EN)
 # =============================
 class ElegirTipoBanView(discord.ui.View):
     def __init__(self, torneo_id, torneo_uid: str, partido):
@@ -2733,11 +2757,11 @@ class ElegirTipoBanView(discord.ui.View):
         global data
         data = load_data()
 
-        guild_id = torneo_id  # torneo_id aquí es guild_id
+        guild_id = torneo_id  # torneo_id here is guild_id  # FIX (EN)
         set_torneo_activo_multi(data, guild_id, torneo_uid)
         torneo = get_torneo_v2(data, guild_id, torneo_uid)
 
-        # 🔒 SI VIENE UN ID, BUSCAR EL PARTIDO (tolerante str/int)
+        # 🔒 IF AN ID IS PROVIDED, FIND THE MATCH (str/int tolerant)  # FIX (EN)
         if not isinstance(partido, dict):
             partido_obj = None
             for p in torneo.get("partidos", []):
@@ -2745,16 +2769,16 @@ class ElegirTipoBanView(discord.ui.View):
                     partido_obj = p
                     break
             if not partido_obj:
-                return  # partido no encontrado
+                return  # match not found  # FIX (EN)
             partido = partido_obj
 
-        # 🔒 DEFENSIVO
+        # 🔒 DEFENSIVE  # FIX (EN)
         if not isinstance(partido, dict):
             return
 
         bloqueado = not hay_capitanes(partido)
 
-        # ✅ Pasar UID a los botones (para que no se mezclen)
+        # ✅ Pass UID to buttons (to avoid mixing tournaments)  # FIX (EN)
         extra = ExtraBanButton(partido["id"], torneo_uid)
         final = FinalBanButton(partido["id"], torneo_uid)
 
@@ -2767,7 +2791,7 @@ class ElegirTipoBanView(discord.ui.View):
         if not partido.get("fase_baneo"):
             return
 # =============================
-# VIEW Asignar Capitanes - FIX (nombres reales) ✅ USA DATA GLOBAL  [MULTI]
+# VIEW Assign Captains - FIX (real names) ✅ USES GLOBAL DATA  [MULTI]  # FIX (EN)
 # =============================
 class AsignarCapitanesView(discord.ui.View):
     def __init__(self, torneo_id, torneo_uid: str, partido_id):
@@ -2778,7 +2802,7 @@ class AsignarCapitanesView(discord.ui.View):
         global data
         data = load_data()
 
-        guild_id = torneo_id  # torneo_id aquí es guild_id
+        guild_id = torneo_id  # torneo_id here is guild_id  # FIX (EN)
         set_torneo_activo_multi(data, guild_id, torneo_uid)
         torneo = get_torneo_v2(data, guild_id, torneo_uid)
 
@@ -2788,19 +2812,19 @@ class AsignarCapitanesView(discord.ui.View):
                 partido = p
                 break
 
-        # DEBUG (solo para probar)
+        # DEBUG (testing only)  # FIX (EN)
         print(
-            "🧩 AsignarCapitanesView guild_id:", guild_id,
+            "🧩 AssignCaptainsView guild_id:", guild_id,  # FIX (EN)
             "uid:", torneo_uid,
-            "partido_id:", partido_id,
-            "encontrado:", bool(partido),
+            "match_id:", partido_id,  # FIX (EN)
+            "found:", bool(partido),  # FIX (EN)
             "ids:", [str(x.get("id")) for x in torneo.get("partidos", [])]
         )
 
-        nombre_a = partido["a"] if partido else "Equipo A"
-        nombre_b = partido["b"] if partido else "Equipo B"
+        nombre_a = partido["a"] if partido else "Team A"  # FIX (EN)
+        nombre_b = partido["b"] if partido else "Team B"  # FIX (EN)
 
-        # ✅ Pasar UID a botones (luego ajustamos sus clases si aún no lo aceptan)
+        # ✅ Pass UID to buttons (their classes will handle it)  # FIX (EN)
         self.add_item(AsignarCapitanButton(guild_id, partido_id, "A", nombre_a, torneo_uid))
         self.add_item(QuitarCapitanButton(guild_id, partido_id, "A", nombre_a, torneo_uid))
 
@@ -2819,7 +2843,7 @@ def obtener_ids_equipo(partido, equipo):
 
     return partido["equipos"][equipo].get("capitanes", [])
 # =============================
-# UTILIDAD: HAY CAPITANES - REV NO TOCA
+# UTILIDAD: HAY CAPITANES - REV NO TOCA - EN
 # =============================
 def hay_capitanes(partido):
 
@@ -2842,7 +2866,7 @@ def hay_capitanes(partido):
         len(partido["equipos"]["B"]["capitanes"]) > 0
     )
 # =============================
-# def construir embed map pool - REV NO TOCA
+# def construir embed map pool - REV NO TOCA - EN
 # =============================
 def construir_embed_map_pool(fase, p):
     embed = discord.Embed(
@@ -2886,19 +2910,19 @@ def construir_embed_map_pool(fase, p):
         nombre_turno = p["a"] if equipo_turno == "A" else p["b"]
 
         embed.set_footer(
-            text=f"🎯 Mapa actual: {fase['mapa_actual']} | Turno {nombre_turno}"
+            text=f"🎯 Current map: {fase['mapa_actual']} | Turn: {nombre_turno}"  # FIX (EN)
         )
     else:
-        embed.set_footer(text="⏳ Calculando resultado final...")
+        embed.set_footer(text="⏳ Calculating final result..." )  # FIX (EN)
 
     return embed
 # =============================
-#  BOTON EXTRA Ban - REV  [MULTI SIN BORRAR LÓGICA]
+#  EXTRA Ban BUTTON - REV  [MULTI SIN BORRAR LÓGICA]  # FIX (EN)
 # =============================
 class ExtraBanButton(discord.ui.Button):
     def __init__(self, partido_id, torneo_uid: str):
         super().__init__(
-            label="➕ Extra Ban (2 baneos)",
+            label="➕ Extra Ban (2 bans)",  # FIX (EN)
             style=discord.ButtonStyle.success
         )
         self.partido_id = partido_id
@@ -2924,15 +2948,15 @@ class ExtraBanButton(discord.ui.Button):
 
             if not hay_capitanes(p):
                 await interaction.response.send_message(
-                    "🔒 No se puede iniciar la fase de baneo.\n"
-                    "❌ Ambos equipos deben tener al menos un capitán asignado.",
+                    "🔒 The ban phase cannot be started.\n"  # FIX (EN)
+                    "❌ Both teams must have at least one captain assigned.",  # FIX (EN)
                     ephemeral=True
                 )
                 return
 
             if fase["coinflip"].get("eleccion"):
                 await interaction.response.send_message(
-                    "⚠️ La elección ya fue realizada",
+                    "⚠️ The choice has already been made",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -2942,7 +2966,7 @@ class ExtraBanButton(discord.ui.Button):
 
             if interaction.user.id not in obtener_ids_equipo(p, ganador):
                 await interaction.response.send_message(
-                    "❌ Solo el capitán del equipo ganador puede elegir",
+                    "❌ Only the captain of the winning team can choose",  # FIX (EN)
                     ephemeral=True
                 )
                 return
@@ -2967,10 +2991,10 @@ class ExtraBanButton(discord.ui.Button):
 
             await interaction.response.edit_message(
                 content=(
-                    f"🎲 **Elección realizada**\n\n"
+                    f"🎲 **Choice made**\n\n"  # FIX (EN)
                     f"🏆 **{nombre_perdedor}**: Final Ban (1)\n"
                     f"⚔️ **{nombre_ganador}**: Extra Ban (2)\n\n"
-                    f"➡️ Inicia el baneo de mapas"
+                    f"➡️ Start the map bans"  # FIX (EN)
                 ),
                 view=None
             )
@@ -2983,12 +3007,12 @@ class ExtraBanButton(discord.ui.Button):
             )
             return
 # =============================
-#  BOTON Final Ban - REV  [MULTI SIN BORRAR LÓGICA]
+#  FINAL Ban BUTTON - REV  [MULTI SIN BORRAR LÓGICA]  # FIX (EN)
 # =============================
 class FinalBanButton(discord.ui.Button):
     def __init__(self, partido_id, torneo_uid: str):
         super().__init__(
-            label="🚫 Final Ban (1 baneo)",
+            label="🚫 Final Ban (1 ban)",  # FIX (EN)
             style=discord.ButtonStyle.danger
         )
         self.partido_id = partido_id
@@ -3013,15 +3037,15 @@ class FinalBanButton(discord.ui.Button):
 
                 if not hay_capitanes(p):
                     await interaction.response.send_message(
-                        "🔒 No se puede iniciar la fase de baneo.\n"
-                        "❌ Ambos equipos deben tener al menos un capitán asignado.",
+                        "🔒 The ban phase cannot be started.\n"  # FIX (EN)
+                        "❌ Both teams must have at least one captain assigned.",  # FIX (EN)
                         ephemeral=True
                     )
                     return
 
                 if fase["coinflip"].get("eleccion"):
                     await interaction.response.send_message(
-                        "⚠️ La elección ya fue realizada",
+                        "⚠️ The choice has already been made",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -3031,7 +3055,7 @@ class FinalBanButton(discord.ui.Button):
 
                 if interaction.user.id not in obtener_ids_equipo(p, ganador):
                     await interaction.response.send_message(
-                        "❌ Solo el capitán del equipo ganador puede elegir",
+                        "❌ Only the captain of the winning team can choose",  # FIX (EN)
                         ephemeral=True
                     )
                     return
@@ -3062,10 +3086,10 @@ class FinalBanButton(discord.ui.Button):
 
                 await interaction.response.edit_message(
                     content=(
-                        f"🎲 **Elección realizada**\n\n"
+                        f"🎲 **Choice made**\n\n"  # FIX (EN)
                         f"🏆 **{nombre_ganador}**: Final Ban (1)\n"
                         f"⚔️ **{nombre_perdedor}**: Extra Ban (2)\n\n"
-                        f"➡️ Inicia el baneo de mapas"
+                        f"➡️ Start the map bans"  # FIX (EN)
                     ),
                     view=None
                 )
@@ -3078,13 +3102,13 @@ class FinalBanButton(discord.ui.Button):
                 )
                 return
 # =============================
-# BOTON Asignar Capitan - FIX DEFINITIVO (nombre real) [MULTI]
+# BUTTON Assign Captain - FIX DEFINITIVE (real name) [MULTI]  # FIX (EN)
 # =============================
 class AsignarCapitanButton(discord.ui.Button):
     def __init__(self, torneo_id, partido_id, equipo, nombre_equipo=None, torneo_uid: str = "DEFAULT"):
 
         # =============================
-        # 🔒 NORMALIZAR EQUIPO (NO SE TOCA)
+        # 🔒 NORMALIZE TEAM (DO NOT TOUCH)  # FIX (EN)
         # =============================
         if equipo not in ("A", "B"):
             if str(equipo).endswith("A"):
@@ -3093,13 +3117,13 @@ class AsignarCapitanButton(discord.ui.Button):
                 equipo = "B"
 
         # =============================
-        # 🔎 RESPETAR NOMBRE REAL SI VIENE
+        # 🔎 RESPECT REAL NAME IF PROVIDED  # FIX (EN)
         # =============================
         if not nombre_equipo:
             data = load_data()
             set_torneo_activo_multi(data, torneo_id, torneo_uid)  # ✅ MULTI
 
-            nombre_equipo = f"Equipo {equipo}"  # fallback seguro
+            nombre_equipo = f"Team {equipo}"  # FIX (EN) fallback seguro
 
             torneo = get_torneo_v2(data, torneo_id, torneo_uid)  # ✅ MULTI
             for p in torneo.get("partidos", []):
@@ -3108,7 +3132,7 @@ class AsignarCapitanButton(discord.ui.Button):
                     break
 
         super().__init__(
-            label=f"Asignar Capitán {nombre_equipo}",
+            label=f"Assign Captain {nombre_equipo}",  # FIX (EN)
             style=discord.ButtonStyle.primary
         )
 
@@ -3118,18 +3142,18 @@ class AsignarCapitanButton(discord.ui.Button):
         self.torneo_uid = torneo_uid  # ✅ NUEVO
 
     async def callback(self, interaction):
-        # ✅ USAR EL TORNEO DEL BOTÓN (NO recalcular)
+        # ✅ USE THE BUTTON'S TOURNAMENT (DO NOT recalculate)  # FIX (EN)
         data = load_data()
         set_torneo_activo_multi(data, self.torneo_id, self.torneo_uid)  # ✅ MULTI
 
         if not interaction.user.guild_permissions.administrator:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
 
-        # ✅ Si tu modal ya acepta UID, se lo pasamos; si no, cae al viejo sin romper
+        # ✅ If your modal already accepts UID, pass it; otherwise fall back without breaking  # FIX (EN)
         try:
             await interaction.response.send_modal(
                 AsignarCapitanModal(self.partido_id, self.equipo, self.torneo_uid)
@@ -3139,7 +3163,7 @@ class AsignarCapitanButton(discord.ui.Button):
                 AsignarCapitanModal(self.partido_id, self.equipo)
             )
 # =============================
-# BOTON Quitar Capitan - FIX DEFINITIVO (nombre real) [MULTI]
+# BUTTON Remove Captain - FIX DEFINITIVE (real name) [MULTI]  # FIX (EN)
 # =============================
 class QuitarCapitanButton(discord.ui.Button):
     def __init__(self, torneo_id, partido_id, equipo, nombre_equipo=None, torneo_uid: str = "DEFAULT"):
@@ -3148,7 +3172,7 @@ class QuitarCapitanButton(discord.ui.Button):
         self.torneo_uid = torneo_uid  # ✅ NUEVO
 
         # =============================
-        # 🔒 NORMALIZAR EQUIPO (FIX REAL)
+        # 🔒 NORMALIZE TEAM (REAL FIX)  # FIX (EN)
         # =============================
         if equipo not in ("A", "B"):
             if str(equipo).endswith("A"):
@@ -3159,13 +3183,13 @@ class QuitarCapitanButton(discord.ui.Button):
         self.equipo = equipo
 
         # =============================
-        # 🔎 RESPETAR NOMBRE REAL SI VIENE
+        # 🔎 RESPECT REAL NAME IF PROVIDED  # FIX (EN)
         # =============================
         if not nombre_equipo:
             data = load_data()
             set_torneo_activo_multi(data, self.torneo_id, self.torneo_uid)  # ✅ MULTI
 
-            nombre_equipo = f"Equipo {equipo}"  # fallback seguro
+            nombre_equipo = f"Team {equipo}"  # FIX (EN) fallback seguro
 
             torneo = get_torneo_v2(data, self.torneo_id, self.torneo_uid)  # ✅ MULTI
             for p in torneo.get("partidos", []):
@@ -3174,7 +3198,7 @@ class QuitarCapitanButton(discord.ui.Button):
                     break
 
         super().__init__(
-            label=f"Quitar Capitán {nombre_equipo}",
+            label=f"Remove Captain {nombre_equipo}",  # FIX (EN)
             style=discord.ButtonStyle.danger
         )
 
@@ -3184,12 +3208,12 @@ class QuitarCapitanButton(discord.ui.Button):
 
         if not interaction.user.guild_permissions.administrator:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
 
-        # ✅ Si tu modal ya acepta UID, se lo pasamos; si no, cae al viejo sin romper
+        # ✅ If your modal already accepts UID, pass it; otherwise fall back without breaking  # FIX (EN)
         try:
             await interaction.response.send_modal(
                 QuitarCapitanModal(self.partido_id, self.equipo, self.torneo_uid)
@@ -3199,7 +3223,7 @@ class QuitarCapitanButton(discord.ui.Button):
                 QuitarCapitanModal(self.partido_id, self.equipo)
             )
 # =============================
-#  Embed Build partido - REV NO TOCAR
+#  Match Embed Builder - REV DO NOT TOUCH LOGIC  # FIX (EN)
 # =============================
 def build_partido_embed(p):
     embed = discord.Embed(
@@ -3208,52 +3232,52 @@ def build_partido_embed(p):
     )
 
     embed.add_field(
-        name="⏰ Fecha",
-        value=p.get("fecha", "⏰ Sin definir"),
+        name="⏰ Date",  # FIX (EN)
+        value=p.get("fecha", "⏰ Not set"),  # FIX (EN)
         inline=False
     )
 
     embed.add_field(
-        name="📌 Estado",
-        value=p.get("estado", "🕒 Pendiente"),
+        name="📌 Status",  # FIX (EN)
+        value=p.get("estado", "🕒 Pending"),  # FIX (EN)
         inline=False
     )
 
-    # ⚠️ SE DEJA TAL CUAL (NO SE BORRA NI CAMBIA)
-    streamers = "\n".join(p.get("streamers", [])) or "No definidos"
+    # ⚠️ LEFT AS IS (DO NOT REMOVE OR CHANGE LOGIC)  # FIX (EN)
+    streamers = "\n".join(p.get("streamers", [])) or "Not defined"  # FIX (EN)
     embed.add_field(
         name="🎥 Streamers",
         value=streamers,
         inline=False
     )
 
-    # 📝 STREAMERS POSTULADOS
+    # 📝 APPLIED STREAMERS  # FIX (EN)
     if p.get("streamers_postulados"):
         postulados = []
         for uid in p["streamers_postulados"]:
             postulados.append(f"<@{uid}> (`{uid}`)")
 
         embed.add_field(
-            name="📝 Streamers Postulados",
+            name="📝 Applied Streamers",  # FIX (EN)
             value="\n".join(postulados),
             inline=False
         )
     else:
         embed.add_field(
-            name="📝 Streamers Postulados",
-            value="Nadie se ha postulado",
+            name="📝 Applied Streamers",  # FIX (EN)
+            value="No one has applied yet",  # FIX (EN)
             inline=False
         )
 
     if p.get("resultado"):
         embed.add_field(
-            name="🏁 Resultado",
+            name="🏁 Result",  # FIX (EN)
             value=p["resultado"],
             inline=False
         )
 
     # =============================
-    # 🧑‍✈️ CAPITANES (PROTEGIDO)
+    # 🧑‍✈️ CAPTAINS (PROTECTED)  # FIX (EN)
     # =============================
     equipos = p.get("equipos", {})
 
@@ -3267,18 +3291,18 @@ def build_partido_embed(p):
     texto_b = "\n".join(f"<@{uid}>" for uid in capitanes_b) if capitanes_b else "—"
 
     embed.add_field(
-        name=f"🧑‍✈️ Capitanes {p['a']}",
+        name=f"🧑‍✈️ Captains {p['a']}",  # FIX (EN)
         value=texto_a,
         inline=True
     )
 
     embed.add_field(
-        name=f"🧑‍✈️ Capitanes {p['b']}",
+        name=f"🧑‍✈️ Captains {p['b']}",  # FIX (EN)
         value=texto_b,
         inline=True
     )
 
-    # ✅ AÑADIDO: identificador único por torneo+partido (NO rompe nada)
+    # ✅ ADDED: unique identifier per tournament + match (DOES NOT BREAK ANYTHING)  # FIX (EN)
     try:
         _uid = (p.get("torneo_uid") or "DEFAULT")
         _pid = p.get("id")
@@ -3286,7 +3310,9 @@ def build_partido_embed(p):
     except:
         _tag = ""
 
-    embed.set_footer(text="Este mensaje se actualiza automáticamente" + _tag)
+    embed.set_footer(
+        text="This message updates automatically" + _tag  # FIX (EN)
+    )
     return embed
 # =============================
 #  DEF get channel safe
@@ -3344,7 +3370,7 @@ async def actualizar_todos_los_mensajes_partido(guild, partido):
             except:
                 continue
 # =============================
-#  Embed actualizar_mensaje_publico_partido - REV (MULTI) + FIX RECUPERAR IDS
+#  Embed update_public_match_message - REV (MULTI) + FIX RECOVER IDS  # FIX (EN)
 # =============================
 async def actualizar_mensaje_publico_partido(guild, partido):
     global data
@@ -3352,7 +3378,7 @@ async def actualizar_mensaje_publico_partido(guild, partido):
 
     embed = build_partido_embed(partido)
 
-    # ✅ helper para ids que a veces quedan como str/None
+    # ✅ helper for ids that sometimes end up as str/None  # FIX (EN)
     def _to_int(x):
         try:
             return int(x)
@@ -3362,17 +3388,17 @@ async def actualizar_mensaje_publico_partido(guild, partido):
     canal_id = _to_int(partido.get("canal_publico_id"))
     msg_id   = _to_int(partido.get("mensaje_publico_id"))
 
-    # ✅ MULTI: UID del partido (o activo)
+    # ✅ MULTI: match UID (or active)  # FIX (EN)
     uid = (partido.get("torneo_uid") or get_server(data, guild.id).get("activo", "DEFAULT"))
     uid = (uid or "DEFAULT").upper().strip()
     uid_low = uid.lower()
 
     # ======================================================
-    # ✅ NUEVO: FALLBACK si faltan IDs -> buscar canal/mensaje
+    # ✅ NEW: FALLBACK if IDs are missing -> search channel/message  # FIX (EN)
     # ======================================================
     if not canal_id or not msg_id:
         try:
-            # canal esperado: partidos-a-disputar-<uid>
+            # expected channel: partidos-a-disputar-<uid>  # FIX (EN)
             nombre_canal = f"partidos-a-disputar-{uid_low}"
 
             canal_fallback = None
@@ -3385,14 +3411,14 @@ async def actualizar_mensaje_publico_partido(guild, partido):
                     pass
 
             if canal_fallback:
-                # buscar mensaje por heurística (id + equipos)
+                # search message by heuristic (id + teams)  # FIX (EN)
                 async for m in canal_fallback.history(limit=80, oldest_first=False):
                     try:
                         if not m.embeds:
                             continue
                         e = m.embeds[0]
 
-                        # heurísticas: que aparezca el id y/o equipos
+                        # heuristics: title/description contains id and/or teams  # FIX (EN)
                         t = (e.title or "")
                         d = (e.description or "")
                         texto = f"{t}\n{d}".lower()
@@ -3404,7 +3430,7 @@ async def actualizar_mensaje_publico_partido(guild, partido):
                             partido["canal_publico_id"] = canal_fallback.id
                             partido["mensaje_publico_id"] = m.id
 
-                            # ✅ guardar para que ya no vuelva a ser None
+                            # ✅ save so it doesn't become None again  # FIX (EN)
                             try:
                                 guild_id = guild.id
                                 set_torneo_activo_multi(data, guild_id, uid)
@@ -3418,10 +3444,10 @@ async def actualizar_mensaje_publico_partido(guild, partido):
                     except:
                         continue
         except Exception as e:
-            print("⚠️ Fallback buscar IDs público falló:", repr(e))
+            print("⚠️ Fallback search for public IDs failed:", repr(e))  # FIX (EN)
 
     # ======================================================
-    # ✅ Actualización normal (si ya hay IDs)
+    # ✅ Normal update (if IDs exist)  # FIX (EN)
     # ======================================================
     if canal_id and msg_id:
         canal = guild.get_channel(canal_id)
@@ -3429,9 +3455,9 @@ async def actualizar_mensaje_publico_partido(guild, partido):
             try:
                 msg = await canal.fetch_message(msg_id)
 
-                # ✅ recrear la view pública con el botón
+                # ✅ recreate the public view with the button  # FIX (EN)
                 view_publica = None
-                rol_streamer_id = data.get("rol_streamer_id")  # OJO: aquí es data, no torneo
+                rol_streamer_id = data.get("rol_streamer_id")  # NOTE: this is data, not torneo  # FIX (EN)
 
                 if rol_streamer_id:
                     try:
@@ -3440,23 +3466,23 @@ async def actualizar_mensaje_publico_partido(guild, partido):
                             PostularStreamerButton(partido["id"], rol_streamer_id, uid)
                         )
                     except Exception as e:
-                        print("⚠️ Error creando view_publica/botón streamer:", repr(e))
+                        print("⚠️ Error creating view_publica/streamer button:", repr(e))  # FIX (EN)
                         view_publica = None
 
                 await msg.edit(embed=embed, view=view_publica)
 
             except Exception as e:
-                print("⚠️ Error actualizando mensaje público partido:", repr(e))
+                print("⚠️ Error updating public match message:", repr(e))  # FIX (EN)
     else:
-        # ✅ NUEVO: si sigue sin ids, al menos lo vemos en consola
-        print("DEBUG publico ids:", canal_id, msg_id, "postulados:", partido.get("streamers_postulados"))
+        # ✅ NEW: if still no ids, at least show it in console  # FIX (EN)
+        print("DEBUG public ids:", canal_id, msg_id, "applicants:", partido.get("streamers_postulados"))  # FIX (EN)
 # =============================
-#  Boton Tabla - REV  [MULTI SIN BORRAR LÓGICA]
+#  Standings Table Button - REV  [MULTI WITHOUT DELETING LOGIC]  # FIX (EN)
 # =============================
 class TablaButton(discord.ui.Button):
     def __init__(self, torneo_uid: str):
         super().__init__(
-            label="📊 Tabla de posiciones",
+            label="📊 Standings table",  # FIX (EN)
             style=discord.ButtonStyle.primary
         )
         self.torneo_uid = torneo_uid  # ✅ NUEVO
@@ -3467,40 +3493,40 @@ class TablaButton(discord.ui.Button):
 
         guild_id = interaction.guild.id
         set_torneo_activo_multi(data, guild_id, self.torneo_uid)  # ✅ compat
-        torneo = get_torneo_v2(data, guild_id, self.torneo_uid)   # ✅ torneo correcto
+        torneo = get_torneo_v2(data, guild_id, self.torneo_uid)   # ✅ correct tournament
 
         tabla = torneo.get("tabla")
         if not tabla:
             await interaction.response.send_message(
-                "❌ Aún no hay resultados",
+                "❌ No results yet",  # FIX (EN)
                 ephemeral=True
             )
             return
 
         embed = discord.Embed(
-            title="📊 Tabla de posiciones",
+            title="📊 Standings table",  # FIX (EN)
             color=discord.Color.green()
         )
 
         for eq, d in sorted(tabla.items(), key=lambda x: x[1]["pts"], reverse=True):
             embed.add_field(
                 name=eq,
-                value=f"PJ {d['pj']} | PG {d['pg']} | PP {d['pp']} | PTS {d['pts']}",
+                value=f"MP {d['pj']} | W {d['pg']} | L {d['pp']} | PTS {d['pts']}",  # FIX (EN)
                 inline=False
             )
 
         await interaction.channel.send(embed=embed)
         await interaction.response.send_message(
-            "📊 Tabla publicada",
+            "📊 Standings posted",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-# 🏆 BOTÓN ADMIN INICIAR ELIMINATORIAS - REV  [MULTI SIN BORRAR LÓGICA]
+# 🏆 ADMIN BUTTON START PLAYOFFS - REV  [MULTI WITHOUT DELETING LOGIC]  # FIX (EN)
 # =============================
 class IniciarEliminatoriasButton(discord.ui.Button):
     def __init__(self, admin_id, torneo_uid: str):
         super().__init__(
-            label="🏆 Iniciar eliminatorias",
+            label="🏆 Start playoffs",  # FIX (EN)
             style=discord.ButtonStyle.danger
         )
         self.admin_id = admin_id
@@ -3512,43 +3538,43 @@ class IniciarEliminatoriasButton(discord.ui.Button):
 
         guild_id = interaction.guild.id
         set_torneo_activo_multi(data, guild_id, self.torneo_uid)  # ✅ compat
-        torneo = get_torneo_v2(data, guild_id, self.torneo_uid)   # ✅ torneo correcto
+        torneo = get_torneo_v2(data, guild_id, self.torneo_uid)   # ✅ correct tournament
 
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
 
         if not torneo.get("tabla"):
             await interaction.response.send_message(
-                "❌ Aún no hay tabla de posiciones",
+                "❌ No standings table yet",  # FIX (EN)
                 ephemeral=True
             )
             return
 
-        # ✅ brackets para ESTE torneo (nota: tu función usa get_torneo legacy)
-        generar_brackets_eliminatoria_multi(guild_id, self.torneo_uid) # por ahora queda igual
+        # ✅ brackets for THIS tournament (note: your function uses legacy get_torneo)
+        generar_brackets_eliminatoria_multi(guild_id, self.torneo_uid) # stays the same for now
         set_torneo_activo_multi(data, guild_id, self.torneo_uid)
         save_data(data)
 
         await interaction.channel.send(
-            "🏆 **FASE ELIMINATORIA INICIADA**",
-            view=PanelEliminatorias(self.admin_id)  # luego la hacemos multi si hace falta
+            "🏆 **PLAYOFF PHASE STARTED**",  # FIX (EN)
+            view=PanelEliminatorias(self.admin_id)  # later we can make it multi if needed
         )
 
         await interaction.response.send_message(
-            "✅ Eliminatorias creadas",
+            "✅ Playoffs created",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-# 🧩 BOTÓN ADMIN RESULTADO ELIMINATORIO - REV  [MULTI]
+# 🧩 ADMIN PLAYOFF RESULT BUTTON - REV  [MULTI]  # FIX (EN)
 # =============================
 class ResultadoEliminatoriaButton(discord.ui.Button):
     def __init__(self, admin_id, torneo_uid: str):
         super().__init__(
-            label="🏁 Resultado eliminatoria",
+            label="🏁 Playoff result",  # FIX (EN)
             style=discord.ButtonStyle.success
         )
         self.admin_id = admin_id
@@ -3564,12 +3590,12 @@ class ResultadoEliminatoriaButton(discord.ui.Button):
 
         if interaction.user.id != self.admin_id:
             await interaction.response.send_message(
-                "❌ Solo administradores",
+                "❌ Administrators only",  # FIX (EN)
                 ephemeral=True
             )
             return
 
-        # ✅ si tu modal ya acepta uid, se lo pasamos; si no, cae al viejo sin romper
+        # ✅ if your modal already accepts uid, pass it; otherwise fall back without breaking  # FIX (EN)
         try:
             await interaction.response.send_modal(
                 ResultadoEliminatoriaModal(self.torneo_uid)
@@ -3579,12 +3605,12 @@ class ResultadoEliminatoriaButton(discord.ui.Button):
                 ResultadoEliminatoriaModal()
             )
 # =============================
-# Ver brackets Button - REV  [MULTI]
+# View brackets Button - REV  [MULTI]  # FIX (EN)
 # =============================
 class VerBracketsButton(discord.ui.Button):
     def __init__(self, torneo_uid: str):
         super().__init__(
-            label="👀 Ver brackets",
+            label="👀 View brackets",  # FIX (EN)
             style=discord.ButtonStyle.secondary
         )
         self.torneo_uid = torneo_uid  # ✅ NUEVO
@@ -3601,48 +3627,48 @@ class VerBracketsButton(discord.ui.Button):
 
         if not brackets:
             await interaction.response.send_message(
-                "❌ No hay eliminatorias",
+                "❌ No playoffs",  # FIX (EN)
                 ephemeral=True
             )
             return
 
         embed = discord.Embed(
-            title="🏆 Brackets eliminatorios",
+            title="🏆 Playoff brackets",  # FIX (EN)
             color=discord.Color.gold()
         )
 
         for b in brackets:
-            estado = "🔒 Cerrado" if b.get("bloqueado") else "🟢 Activo"
-            resultado = b.get("resultado") or "Pendiente"
+            estado = "🔒 Locked" if b.get("bloqueado") else "🟢 Active"  # FIX (EN)
+            resultado = b.get("resultado") or "Pending"  # FIX (EN)
 
             embed.add_field(
                 name=f"⚔️ Match {b.get('id')}",
                 value=f"{b.get('a')} 🆚 {b.get('b')}\n"
                       f"📊 {resultado}\n"
-                      f"🏅 Ganador: {b.get('ganador', '—')}\n"
+                      f"🏅 Winner: {b.get('ganador', '—')}\n"  # FIX (EN)
                       f"{estado}",
                 inline=False
             )
 
         await interaction.channel.send(embed=embed)
         await interaction.response.send_message(
-            "👀 Brackets publicados",
+            "👀 Brackets posted",  # FIX (EN)
             ephemeral=True
         )
 # =============================
-# 🎮 PANEL ELIMINATORIAS - REV  [MULTI] ✅ (COMPAT 2/3 args)
+# 🎮 PLAYOFFS PANEL - REV  [MULTI] ✅ (COMPAT 2/3 args)
 # =============================
 class PanelEliminatorias(discord.ui.View):
     def __init__(self, *args, **kwargs):
         """
-        Soporta:
+        Supports:
         - PanelEliminatorias(torneo_id, admin_id, torneo_uid)
-        - PanelEliminatorias(admin_id, torneo_uid)   (compat con llamadas viejas)
+        - PanelEliminatorias(admin_id, torneo_uid)   (compat with legacy calls)
         - PanelEliminatorias(admin_id=..., torneo_uid=..., torneo_id=...)
         """
         super().__init__(timeout=None)
 
-        # --------- parse args / kwargs (sin romper llamadas viejas) ----------
+        # --------- parse args / kwargs (without breaking legacy calls) ----------
         torneo_id = kwargs.get("torneo_id", None)
         admin_id = kwargs.get("admin_id", None)
         torneo_uid = kwargs.get("torneo_uid", kwargs.get("uid", "DEFAULT"))
@@ -3658,11 +3684,11 @@ class PanelEliminatorias(discord.ui.View):
         self.torneo_id = torneo_id
         self.torneo_uid = torneo_uid or "DEFAULT"
 
-        # ✅ estos botones reciben UID
+        # ✅ these buttons receive UID
         self.add_item(VerBracketsButton(self.torneo_uid))
         self.add_item(ResultadoEliminatoriaButton(self.admin_id, self.torneo_uid))
 # =============================
-# PANEL TORNEO PUBLICO - REV  [MULTI]
+# PUBLIC TOURNAMENT PANEL - REV  [MULTI]
 # =============================
 class PanelTorneo(discord.ui.View):
     def __init__(self, torneo_id, admin_id, torneo_uid: str):
@@ -3672,10 +3698,10 @@ class PanelTorneo(discord.ui.View):
         self.torneo_uid = torneo_uid
 
         if admin_id:
-            # ✅ SorteoButton ahora recibe (torneo_uid, admin_id)
+            # ✅ SorteoButton now receives (torneo_uid, admin_id)
             self.add_item(SorteoButton(self.torneo_uid, admin_id))
 
-        # ✅ estos ahora son multi
+        # ✅ these are now multi
         self.add_item(VerPartidosButton(self.torneo_uid))
         self.add_item(TablaButton(self.torneo_uid))
 
@@ -3760,25 +3786,25 @@ def track_recurso_torneo(
 # SLASH COMMANDS - REV 
 # =============================
 # =============================
-# /admin_create
+# /admin_create  # FIX (EN)
 # =============================
-@bot.slash_command(name="admin_create", description="Asignar rol creador de torneos")
+@bot.slash_command(name="admin_create", description="Assign tournament creator/admin role")  # FIX (EN)
 async def admin_create(ctx, rol: discord.Role):
     global data
     data = load_data()
 
     if not ctx.author.guild_permissions.administrator:
-        await ctx.respond("❌ Solo admins", ephemeral=True)
+        await ctx.respond("❌ Admins only", ephemeral=True)  # FIX (EN)
         return
 
     data["rol_admin_torneo_id"] = rol.id
     save_data(data)
 
-    await ctx.respond(f"✅ Rol **{rol.name}** autorizado", ephemeral=True)
+    await ctx.respond(f"✅ Role **{rol.name}** authorized", ephemeral=True)  # FIX (EN)
 # =============================
-# /Iniciar_Torneo
+# /iniciar_torneo  # FIX (EN)
 # =============================
-@bot.slash_command(name="iniciar_torneo", description="Abrir panel admin del torneo")
+@bot.slash_command(name="iniciar_torneo", description="Open the tournament admin panel")  # FIX (EN)
 async def iniciar_torneo(ctx: discord.ApplicationContext):
     global data
     data = load_data()
@@ -3786,35 +3812,35 @@ async def iniciar_torneo(ctx: discord.ApplicationContext):
     rol_id = data.get("rol_admin_torneo_id")
 
     if not rol_id or not any(r.id == rol_id for r in ctx.author.roles):
-        await ctx.respond("❌ No tienes permisos", ephemeral=True)
+        await ctx.respond("❌ You don't have permission", ephemeral=True)  # FIX (EN)
         return
 
     guild_id = ctx.guild.id
 
-    # ✅ MULTI: usa el torneo ACTIVO del servidor
+    # ✅ MULTI: uses the server's ACTIVE tournament  # FIX (EN)
     torneo = get_torneo_v2(data, guild_id)
     uid = torneo.get("torneo_uid", "DEFAULT")
 
-    # mantener tu misma intención (inicializar/asegurar estructura)
+    # keep your same intention (initialize/ensure structure)  # FIX (EN)
     torneo.setdefault("creador", ctx.author.id)
     torneo.setdefault("logo", None)
 
-    # ✅ compat: data["torneo"] apunta al torneo activo
+    # ✅ compat: data["torneo"] points to the active tournament  # FIX (EN)
     set_torneo_activo_multi(data, guild_id, uid)
 
     save_data(data)
 
     await ctx.respond(
-        f"⚙️ Panel de configuración del torneo (UID: `{uid}`)",
-        view=PanelConfig(ctx.author.id, uid),  # ✅ PASAR UID para que no mezcle torneos
+        f"⚙️ Tournament configuration panel (UID: `{uid}`)",  # FIX (EN)
+        view=PanelConfig(ctx.author.id, uid),  # ✅ PASS UID so tournaments don't mix
         ephemeral=True
     )
 # =============================
-# /add_streamer_role
+# /add_streamer_role  # FIX (EN)
 # =============================
 @bot.slash_command(
     name="add_streamer_role",
-    description="Define el rol de streamer del torneo",
+    description="Set the tournament streamer role",  # FIX (EN)
 )
 @discord.default_permissions(administrator=True)
 async def add_streamer_role(
@@ -3828,13 +3854,13 @@ async def add_streamer_role(
     save_data(data)
 
     await ctx.respond(
-        f"🎥 Rol de **Streamer** configurado correctamente:\n{rol.mention}",
+        f"🎥 **Streamer** role configured successfully:\n{rol.mention}",  # FIX (EN)
         ephemeral=True
     )
 # =============================
-# /torneo_crear
+# /torneo_crear  # FIX (EN)
 # =============================
-@bot.slash_command(name="torneo_crear", description="Crea un torneo nuevo en este servidor")
+@bot.slash_command(name="torneo_crear", description="Create a new tournament in this server")  # FIX (EN)
 async def torneo_crear(ctx: discord.ApplicationContext):
     global data
     data = load_data()
@@ -3842,20 +3868,20 @@ async def torneo_crear(ctx: discord.ApplicationContext):
     guild_id = ctx.guild.id
     uid = new_torneo_uid()
 
-    # crea torneo vacío y lo marca activo
+    # creates an empty tournament and marks it active  # FIX (EN)
     get_torneo_multi(data, guild_id, uid)
     set_torneo_activo_uid(data, guild_id, uid)
 
     save_data(data)
 
     await ctx.respond(
-        f"✅ Torneo creado. UID: `{uid}` (ahora es el activo).",
+        f"✅ Tournament created. UID: `{uid}` (now active).",  # FIX (EN)
         ephemeral=True
     )
 # =============================
-# /torneo_listar
+# /torneo_listar  # FIX (EN)
 # =============================
-@bot.slash_command(name="torneo_listar", description="Lista los torneos (UID) del servidor")
+@bot.slash_command(name="torneo_listar", description="List server tournaments (UID)")  # FIX (EN)
 async def torneo_listar(ctx: discord.ApplicationContext):
     global data
     data = load_data()
@@ -3869,11 +3895,11 @@ async def torneo_listar(ctx: discord.ApplicationContext):
         uids = ["DEFAULT"]
 
     texto = "\n".join([f"- `{u}`{' ⭐' if u == activo else ''}" for u in uids])
-    await ctx.respond(f"📋 Torneos en este servidor:\n{texto}", ephemeral=True)
+    await ctx.respond(f"📋 Tournaments in this server:\n{texto}", ephemeral=True)  # FIX (EN)
 # =============================
-# /torneo_usar
+# /torneo_usar  # FIX (EN)
 # =============================
-@bot.slash_command(name="torneo_usar", description="Selecciona el torneo activo por UID")
+@bot.slash_command(name="torneo_usar", description="Select the active tournament by UID")  # FIX (EN)
 async def torneo_usar(ctx: discord.ApplicationContext, uid: str):
     global data
     data = load_data()
@@ -3883,26 +3909,26 @@ async def torneo_usar(ctx: discord.ApplicationContext, uid: str):
     uid = uid.upper()
 
     if uid not in srv.get("torneos", {}):
-        await ctx.respond("❌ Ese UID no existe en este servidor. Usa /torneo_listar", ephemeral=True)
+        await ctx.respond("❌ That UID doesn't exist in this server. Use /torneo_listar", ephemeral=True)  # FIX (EN)
         return
 
     set_torneo_activo_uid(data, guild_id, uid)
     save_data(data)
 
-    await ctx.respond(f"✅ Torneo activo cambiado a `{uid}`.", ephemeral=True)
+    await ctx.respond(f"✅ Active tournament changed to `{uid}`.", ephemeral=True)  # FIX (EN)
 # =============================
-# /partido_Crear
+# /partido_crear  # FIX (EN)
 # =============================
 @bot.slash_command(
     name="partido_crear",
-    description="Crea un partido extra manualmente en un torneo (multi)."
+    description="Manually create an extra match in a tournament (multi)."  # FIX (EN)
 )
 async def partido_crear(
     ctx: discord.ApplicationContext,
     torneo_uid: str,
     equipo_a: str,
     equipo_b: str,
-    fecha: str = "⏰ Sin definir"
+    fecha: str = "⏰ Not defined"  # FIX (EN)
 ):
     await ctx.defer(ephemeral=True)
 
@@ -3912,36 +3938,36 @@ async def partido_crear(
     guild_id = ctx.guild.id
     uid = (torneo_uid or "").upper().strip()
 
-    # ✅ validar UID existe
+    # ✅ validate UID exists  # FIX (EN)
     srv = ensure_multi_torneo_schema(data, guild_id)
     if uid not in srv.get("torneos", {}):
         await ctx.respond(
-            "❌ Ese UID no existe en este servidor. Usa /torneo_listar",
+            "❌ That UID doesn't exist in this server. Use /torneo_listar",  # FIX (EN)
             ephemeral=True
         )
         return
 
-    # ✅ fijar torneo correcto
+    # ✅ set correct tournament  # FIX (EN)
     set_torneo_activo_multi(data, guild_id, uid)
     torneo = get_torneo_v2(data, guild_id, uid)
 
-    # ✅ asegurar equipos/tabla (por si es un partido extra con nombre nuevo)
+    # ✅ ensure teams/standings (in case it's a new team name)  # FIX (EN)
     _asegurar_equipo_en_torneo_y_tabla(torneo, equipo_a)
     _asegurar_equipo_en_torneo_y_tabla(torneo, equipo_b)
 
-    # ✅ crear partido completo
+    # ✅ create full match  # FIX (EN)
     pid = _next_partido_id(torneo)
 
     partido = {
         "id": pid,
         "a": equipo_a.strip(),
         "b": equipo_b.strip(),
-        "fecha": fecha if fecha else "⏰ Sin definir",
-        "estado": "🕒 Pendiente",
+        "fecha": fecha if fecha else "⏰ Not defined",  # FIX (EN)
+        "estado": "🕒 Pending",  # FIX (EN)
         "resultado": None,
         "bloqueado": False,
 
-        # para embeds / vistas
+        # for embeds / views  # FIX (EN)
         "equipos": {
             "A": {"capitanes": []},
             "B": {"capitanes": []}
@@ -3952,28 +3978,28 @@ async def partido_crear(
         "streamers_postulados": [],
         "streamers_aprobados": [],
 
-        # ✅ MUY IMPORTANTE para que actualizar_mensaje_publico_partido
-        # reconstruya el botón con el UID correcto:
+        # ✅ VERY IMPORTANT so actualizar_mensaje_publico_partido
+        # rebuilds the button with the correct UID:  # FIX (EN)
         "torneo_uid": uid
     }
 
     torneo.setdefault("partidos", [])
     torneo["partidos"].append(partido)
 
-    # ✅ guardar
+    # ✅ save  # FIX (EN)
     set_torneo_activo_multi(data, guild_id, uid)
     save_data(data)
 
     guild = ctx.guild
 
-    # 📺 Canal público de partidos (aislado por UID)
+    # 📺 Public matches channel (isolated by UID)  # FIX (EN)
     canal_partidos = await crear_categoria_y_canal(
         guild,
-        f"⚔️ PARTIDOS - {uid}",
+        f"⚔️ MATCHES - {uid}",  # FIX (EN)
         f"partidos-a-disputar-{uid.lower()}"
     )
 
-    # ✅ AÑADIDO: track canal + categoría (por ID) para borrado total
+    # ✅ ADDED: track channel + category (by ID) for full deletion  # FIX (EN)
     try:
         track_recurso_torneo(torneo, canal_id=canal_partidos.id)
         if getattr(canal_partidos, "category_id", None):
@@ -3983,14 +4009,14 @@ async def partido_crear(
     except:
         pass
 
-    # 🛠️ Canal ADMIN (aislado por UID)
+    # 🛠️ Admin channel (isolated by UID)  # FIX (EN)
     canal_admin = await crear_categoria_y_canal(
         guild,
-        f"⚙️ ADMIN TORNEO - {uid}",
+        f"⚙️ TOURNAMENT ADMIN - {uid}",  # FIX (EN)
         f"admin-partidos-{uid.lower()}"
     )
 
-    # ✅ AÑADIDO: track canal + categoría (por ID) para borrado total
+    # ✅ ADDED: track channel + category (by ID) for full deletion  # FIX (EN)
     try:
         track_recurso_torneo(torneo, canal_id=canal_admin.id)
         if getattr(canal_admin, "category_id", None):
@@ -3999,9 +4025,8 @@ async def partido_crear(
         save_data(data)
     except:
         pass
-
     # =============================
-    # PUBLICAR PARTIDO (PÚBLICO)
+    # POST MATCH (PUBLIC)
     # =============================
     embed = build_partido_embed(partido)
 
@@ -4021,7 +4046,7 @@ async def partido_crear(
     save_data(data)
 
     # =============================
-    # PANEL ADMIN DEL PARTIDO
+    # MATCH ADMIN PANEL
     # =============================
     admin_id = ctx.author.id
 
@@ -4035,61 +4060,61 @@ async def partido_crear(
     view_admin.add_item(IniciarFaseBaneoButton(partido["id"], uid))
 
     await canal_admin.send(
-        f"🛠️ **Panel administrador – Partido #{partido['id']}**\n"
+        f"🛠️ **Admin panel – Match #{partido['id']}**\n"  # FIX (EN)
         f"⚔️ **{partido['a']} vs {partido['b']}**\n"
-        f"🧩 Torneo UID: `{uid}`",
+        f"🧩 Tournament UID: `{uid}`",  # FIX (EN)
         view=view_admin
     )
 
     await ctx.respond(
-        f"✅ Partido extra creado (ID `{pid}`) en torneo `{uid}`.\n"
-        f"📌 Público: {canal_partidos.mention}\n"
-        f"🛠️ Admin: {canal_admin.mention}",
+        f"✅ Extra match created (ID `{pid}`) in tournament `{uid}`.\n"  # FIX (EN)
+        f"📌 Public: {canal_partidos.mention}\n"  # FIX (EN)
+        f"🛠️ Admin: {canal_admin.mention}",  # FIX (EN)
         ephemeral=True
     )
 # =============================
-# Borrar recursis torneo
+# Delete tournament resources - REV  [MULTI]  # FIX (EN)
 # =============================
 import discord
 
 async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
     """
-    Borra canales/categorías del torneo.
-    - Primero intenta por IDs guardados (torneo["recursos"])
-    - Si no existen, usa fallback por nombres que contengan el UID
-    """
+    Deletes tournament channels/categories.
+    - First tries stored IDs (torneo["recursos"])
+    - If missing, uses a fallback by names that contain the UID
+    """  # FIX (EN)
     borrados_canales = 0
     borrados_categorias = 0
 
-    # ✅ NUEVO: sets para evitar doble borrado
+    # ✅ NEW: sets to avoid double delete  # FIX (EN)
     borrados_ids = set()
 
-    # ✅ NUEVO: normalizar uid para comparaciones seguras
+    # ✅ NEW: normalize uid for safe comparisons  # FIX (EN)
     uid = (uid or "").upper().strip()
     uid_low = uid.lower()
 
     # ============
-    # 1) BORRADO POR IDS (RECOMENDADO)
+    # 1) DELETE BY IDS (RECOMMENDED)  # FIX (EN)
     # ============
     recursos = torneo.get("recursos", {})
     canales_ids = list(dict.fromkeys(recursos.get("canales", [])))  # unique
     categorias_ids = list(dict.fromkeys(recursos.get("categorias", [])))
 
-    # ✅ NUEVO: helper para borrar threads si el canal los soporta
+    # ✅ NEW: helper to delete threads if the channel supports them  # FIX (EN)
     async def _borrar_threads_de_canal(ch):
         try:
-            # TextChannel / ForumChannel tienen .threads (threads activos)
+            # TextChannel / ForumChannel have .threads (active threads)  # FIX (EN)
             threads = getattr(ch, "threads", None)
             if threads:
                 for th in list(threads):
                     try:
-                        await th.delete(reason=f"Borrado torneo {uid}")
+                        await th.delete(reason=f"Delete tournament {uid}")  # FIX (EN)
                     except:
                         pass
         except:
             pass
 
-    # ✅ NUEVO: helper para borrar un canal (con threads)
+    # ✅ NEW: helper to delete a channel (with threads)  # FIX (EN)
     async def _borrar_canal(ch, reason: str):
         nonlocal borrados_canales
         try:
@@ -4104,13 +4129,13 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
         except:
             pass
 
-    # borrar canales por id
+    # delete channels by id  # FIX (EN)
     for cid in canales_ids:
         ch = guild.get_channel(cid)
         if ch:
-            await _borrar_canal(ch, f"Borrado torneo {uid}")
+            await _borrar_canal(ch, f"Delete tournament {uid}")  # FIX (EN)
 
-    # borrar categorías por id (al final)
+    # delete categories by id (at the end)  # FIX (EN)
     for catid in categorias_ids:
         cat = discord.utils.get(guild.categories, id=catid)
         if cat:
@@ -4118,17 +4143,17 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
                 if catid in borrados_ids:
                     continue
 
-                # ✅ NUEVO: borrar threads dentro (si hay foros/text)
+                # ✅ NEW: delete threads inside (if forum/text)  # FIX (EN)
                 for ch in list(cat.channels):
                     await _borrar_threads_de_canal(ch)
 
-                # borrar canales dentro de la categoría
+                # delete channels inside the category  # FIX (EN)
                 for ch in list(cat.channels):
-                    await _borrar_canal(ch, f"Borrado torneo {uid}")
+                    await _borrar_canal(ch, f"Delete tournament {uid}")  # FIX (EN)
 
-                # borrar categoría
+                # delete category  # FIX (EN)
                 try:
-                    await cat.delete(reason=f"Borrado torneo {uid}")
+                    await cat.delete(reason=f"Delete tournament {uid}")  # FIX (EN)
                     borrados_categorias += 1
                     borrados_ids.add(catid)
                 except:
@@ -4137,7 +4162,7 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
                 pass
 
     # ============
-    # 2) FALLBACK POR NOMBRES (SI NO SE GUARDARON IDS)
+    # 2) FALLBACK BY NAMES (IF IDS WEREN'T SAVED)  # FIX (EN)
     # ============
     patrones_categoria = [
         f"🏆 TORNEO - ",
@@ -4147,8 +4172,8 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
         f"📊 CLASIFICACIÓN - {uid}",
     ]
 
-    # ✅ NUEVO: patrones “seguros” para canales
-    # Ej: "tabla-abc123", "admin-partidos-abc123", "partidos-a-disputar-abc123"
+    # ✅ NEW: “safe” patterns for channels  # FIX (EN)
+    # Eg: "tabla-abc123", "admin-partidos-abc123", "partidos-a-disputar-abc123"
     def _match_canal_seguro(nombre: str) -> bool:
         n = (nombre or "").lower()
         return (
@@ -4161,11 +4186,11 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
             or n.startswith(f"equipos-{uid_low}")
         )
 
-    # 2.1 borrar canales sueltos (texto/voz/foro/stage) fuera de categorías
-    # ✅ NUEVO: incluir más tipos además de text_channels
+    # 2.1 delete loose channels (text/voice/forum/stage) outside categories  # FIX (EN)
+    # ✅ NEW: include more types besides text_channels  # FIX (EN)
     canales_fuera = []
 
-    # ✅ CORRECCIÓN: en discord.py algunas props pueden no existir; usamos getattr defensivo
+    # ✅ FIX: in discord.py some props may not exist; use getattr defensively  # FIX (EN)
     try:
         canales_fuera.extend(list(getattr(guild, "text_channels", [])))
     except:
@@ -4183,31 +4208,31 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
     except:
         pass
 
-    # ✅ NUEVO: no borrar canales que estén dentro de categorías (solo “sueltos”)
+    # ✅ NEW: don't delete channels that are inside categories (only “loose”)  # FIX (EN)
     for ch in canales_fuera:
         try:
             if not ch:
                 continue
 
-            # ✅ NUEVO: si ya se borró por ID, saltar
+            # ✅ NEW: if already deleted by ID, skip  # FIX (EN)
             if ch.id in borrados_ids:
                 continue
 
-            # ✅ NUEVO: solo canales “fuera de categoría”
+            # ✅ NEW: only channels “outside category”  # FIX (EN)
             if getattr(ch, "category_id", None) is not None:
                 continue
 
-            # solo borrar si match “seguro”
+            # delete only if “safe” match  # FIX (EN)
             if _match_canal_seguro(getattr(ch, "name", "")):
-                await _borrar_canal(ch, f"Borrado torneo {uid} (fallback)")
+                await _borrar_canal(ch, f"Delete tournament {uid} (fallback)")  # FIX (EN)
         except:
             pass
 
-    # 2.2 borrar categorías del torneo (y lo que contengan)
+    # 2.2 delete tournament categories (and whatever they contain)  # FIX (EN)
     for cat in list(guild.categories):
         cname = cat.name or ""
 
-        # ✅ (tu lógica original se mantiene)
+        # ✅ (your original logic remains)  # FIX (EN)
         es_uid = (
             cname.endswith(f"- {uid}")
             or any(p in cname for p in patrones_categoria)
@@ -4216,7 +4241,7 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
 
         if es_uid:
             try:
-                # ✅ NUEVO: evitar borrar si ya se borró por ID
+                # ✅ NEW: avoid deleting if already deleted by ID  # FIX (EN)
                 if cat.id in borrados_ids:
                     continue
 
@@ -4225,15 +4250,15 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
                         if ch.id in borrados_ids:
                             continue
 
-                        # ✅ NUEVO: borrar threads dentro si hay
+                        # ✅ NEW: delete threads inside if any  # FIX (EN)
                         await _borrar_threads_de_canal(ch)
 
-                        await _borrar_canal(ch, f"Borrado torneo {uid} (fallback)")
+                        await _borrar_canal(ch, f"Delete tournament {uid} (fallback)")  # FIX (EN)
                     except:
                         pass
 
                 try:
-                    await cat.delete(reason=f"Borrado torneo {uid} (fallback)")
+                    await cat.delete(reason=f"Delete tournament {uid} (fallback)")  # FIX (EN)
                     borrados_categorias += 1
                     borrados_ids.add(cat.id)
                 except:
@@ -4243,11 +4268,11 @@ async def borrar_recursos_torneo(guild: discord.Guild, torneo: dict, uid: str):
 
     return borrados_canales, borrados_categorias
 # =============================
-# /torneo borrar
+# /torneo_borrar  # FIX (EN)
 # =============================
 @bot.slash_command(
     name="torneo_borrar",
-    description="Borra un torneo por UID y elimina todos sus canales/categorías"
+    description="Delete a tournament by UID and remove all its channels/categories"  # FIX (EN)
 )
 async def torneo_borrar(ctx: discord.ApplicationContext, uid: str):
     await ctx.defer(ephemeral=True)  # ✅ OK
@@ -4255,18 +4280,18 @@ async def torneo_borrar(ctx: discord.ApplicationContext, uid: str):
     global data
     data = load_data()
 
-    # ✅ NUEVO: blindaje si no hay servidor (DM)
+    # ✅ NEW: guard if there's no guild (DM)  # FIX (EN)
     if ctx.guild is None:
         try:
-            await ctx.followup.send("❌ Este comando solo funciona dentro de un servidor.", ephemeral=True)
+            await ctx.followup.send("❌ This command only works inside a server.", ephemeral=True)  # FIX (EN)
         except:
             pass
         return
 
-    # ✅ seguridad: solo admin (puedes cambiar a rol_admin_torneo_id si prefieres)
+    # ✅ security: admins only (you can switch to rol_admin_torneo_id if you prefer)  # FIX (EN)
     if not ctx.author.guild_permissions.administrator:
         try:
-            await ctx.followup.send("❌ Solo administradores pueden borrar torneos.", ephemeral=True)
+            await ctx.followup.send("❌ Only administrators can delete tournaments.", ephemeral=True)  # FIX (EN)
         except:
             pass
         return
@@ -4279,45 +4304,45 @@ async def torneo_borrar(ctx: discord.ApplicationContext, uid: str):
 
     if uid not in torneos:
         try:
-            await ctx.followup.send("❌ Ese UID no existe. Usa `/torneo_listar`.", ephemeral=True)
+            await ctx.followup.send("❌ That UID doesn't exist. Use `/torneo_listar`.", ephemeral=True)  # FIX (EN)
         except:
             pass
         return
 
     torneo = torneos[uid]
 
-    # ✅ NUEVO: mensaje previo (por si luego se borra el canal)
+    # ✅ NEW: send message first (in case the channel gets deleted)  # FIX (EN)
     try:
         await ctx.followup.send(
-            f"🗑️ Borrando torneo `{uid}`... (canales/categorías + data)",
+            f"🗑️ Deleting tournament `{uid}`... (channels/categories + data)",  # FIX (EN)
             ephemeral=True
         )
     except:
         pass
 
-    # 1) borrar recursos Discord
+    # 1) delete Discord resources  # FIX (EN)
     try:
         borrados_canales, borrados_categorias = await borrar_recursos_torneo(ctx.guild, torneo, uid)
     except Exception:
         borrados_canales, borrados_categorias = 0, 0
 
-    # 2) borrar del data.json
+    # 2) delete from data.json  # FIX (EN)
     try:
         del torneos[uid]
     except:
         pass
 
-    # 3) si era el activo, cambiar a otro
+    # 3) if it was active, switch to another  # FIX (EN)
     if srv.get("activo") == uid:
         nuevo_activo = next(iter(torneos.keys()), "DEFAULT")
         srv["activo"] = nuevo_activo
 
     save_data(data)
 
-    # ✅ NUEVO: intentar followup; si el canal fue borrado, mandar DM como fallback
+    # ✅ NEW: try followup; if the channel was deleted, DM as fallback  # FIX (EN)
     msg_final = (
-        f"✅ Torneo `{uid}` eliminado.\n"
-        f"📌 Canales borrados: `{borrados_canales}` | Categorías borradas: `{borrados_categorias}`"
+        f"✅ Tournament `{uid}` deleted.\n"  # FIX (EN)
+        f"📌 Channels deleted: `{borrados_canales}` | Categories deleted: `{borrados_categorias}`"  # FIX (EN)
     )
 
     try:
