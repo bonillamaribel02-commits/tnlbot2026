@@ -4025,6 +4025,7 @@ async def partido_crear(
         save_data(data)
     except:
         pass
+
     # =============================
     # POST MATCH (PUBLIC)
     # =============================
@@ -4045,6 +4046,22 @@ async def partido_crear(
     set_torneo_activo_multi(data, guild_id, uid)
     save_data(data)
 
+    # ✅ AÑADIDO: persistir IDs sobre el partido REAL en data.json (blindaje)
+    try:
+        data = load_data()
+        torneo_real = get_torneo_v2(data, guild_id, uid)
+
+        for pp in torneo_real.get("partidos", []):
+            if str(pp.get("id")) == str(partido.get("id")):
+                pp["canal_publico_id"] = canal_partidos.id
+                pp["mensaje_publico_id"] = mensaje.id
+                pp["torneo_uid"] = uid
+                break
+
+        set_torneo_activo_multi(data, guild_id, uid)
+        save_data(data)
+    except Exception as e:
+        print("⚠️ Persistencia IDs manual falló:", repr(e))
     # =============================
     # MATCH ADMIN PANEL
     # =============================
